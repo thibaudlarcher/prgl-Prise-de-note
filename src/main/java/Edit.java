@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 import static java.lang.System.exit;
@@ -24,5 +25,14 @@ public class Edit {
         System.out.println("\033[4;30m"+"Action :");
         String str = sc.next();
         System.out.println("\033[0m"+"Vous avez saisi  : " + str);
+
+        if (str.equals("e") || str.equals("edit")) {
+            Runtime runtime = Runtime.getRuntime();
+            try {
+                Process process = runtime.exec("code");
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
