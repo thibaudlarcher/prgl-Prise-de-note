@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -23,16 +24,11 @@ public class Edit {
         System.out.println("4) Voir la note (saisir view ou v)");
         System.out.println("5) Rechercher une note (saisir search ou s)");
         System.out.println("\033[4;30m"+"Action :");
-        String str = sc.next();
+        String str = sc.nextLine();
+        str = str.replaceAll("\\s+","");
         System.out.println("\033[0m"+"Vous avez saisi  : " + str);
 
-        if (str.equals("e") || str.equals("edit")) {
-            Runtime runtime = Runtime.getRuntime();
-            try {
-                Process process = runtime.exec("code");
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+        Edition edit = new Edition();
+        edit.ProcessEdit(str);
     }
 }
