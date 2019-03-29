@@ -10,7 +10,8 @@ public class Edition {
         if (str.charAt(0) == 'e') {
             try {
                 if (str.substring(1).equals("")){
-                    Process process = Runtime.getRuntime().exec("code NewFile");
+                    String[] command = {"code","NewFile"};
+                    Process process = Runtime.getRuntime().exec(command);
                     process.waitFor();
                 }else {
                     Process process = Runtime.getRuntime().exec("code "+str.substring(1));
@@ -21,7 +22,7 @@ public class Edition {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }else if (str.substring(3).equals("edit")) {
+        }else if (str.substring(0,3).equals("edit")) {
             try {
                 if (str.substring(4).equals("")){
                     Process process = Runtime.getRuntime().exec("code NewFile");
