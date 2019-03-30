@@ -6,10 +6,11 @@ import static java.lang.System.exit;
 
 public class Edit {
 
-    public Edit(){}
-
     public static void main(String[] args){
 
+        if(args.length == 1){
+
+        }else{
             System.out.println("                    _                _                    _");
             System.out.println("         _ __  _ __(_)___  ___    __| | ___   _ __   ___ | |_ ___");
             System.out.println("        | '_ \\| '__| / __|/ _ \\  / _` |/ _ \\ | '_ \\ / _ \\| __/ _ \\");
@@ -24,18 +25,19 @@ public class Edit {
             System.out.println("3) Supprimer une note (saisir delet ou d)");
             System.out.println("4) Voir la note (saisir view ou v)");
             System.out.println("5) Rechercher une note (saisir search ou s)");
-        while (true) {
-            System.out.println("\033[4;30m" + "Action :");
-            String str = sc.nextLine();
-            str = str.replaceAll("\\s+", "");
-            System.out.println("\033[0m" + "Vous avez saisi  : " + str);
+            while (true) {
+                System.out.println("\033[4;30m" + "Action :");
+                String str = sc.nextLine();
+                str = str.replaceAll("\\s+", "");
+                System.out.println("\033[0m" + "Vous avez saisi  : " + str);
 
-            if (str.equals("exit")){
-                exit(0);
+                if (str.equals("exit")){
+                    exit(0);
+                }
+                Edition edit = new Edition();
+                edit.ProcessEdit(str);
+
             }
-            Edition edit = new Edition();
-            edit.ProcessEdit(str);
-
         }
     }
 }
