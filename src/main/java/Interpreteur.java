@@ -27,13 +27,13 @@ public class Interpreteur {
         return textPane;
     }
 
-    public void setHelpText(){
+    private JPanel setHelpText(){
         JPanel helpTxtPanel = new JPanel();
+        helpTxtPanel.setLocation(0,0);
 //        helpTxtPanel.setBorder(BorderFactory.createLineBorder(Color.white,2));
-        helpTxtPanel.setBounds(0,0,700,350);
+        helpTxtPanel.setBounds(0,0,700,400);
         helpTxtPanel.setBackground(Color.black);
         helpTxtPanel.setLayout(null);
-        helpTxtPanel.setLocation(0,0);
         helpTxtPanel.add(jtxtpane("                    _                _                    _",Color.white,0,0));
         helpTxtPanel.add(jtxtpane("         _ __  _ __(_)___  ___    __| | ___   _ __   ___ | |_ ___",Color.white,0,20));
         helpTxtPanel.add(jtxtpane("        | '_ \\| '__| / __|/ _ \\  / _` |/ _ \\ | '_ \\ / _ \\| __/ _ \\",Color.white,0,40));
@@ -46,11 +46,37 @@ public class Interpreteur {
         helpTxtPanel.add(jtxtpane("2) Lister les notes existantes (saisire list ou ls)",new Color(0,153,0),0,180));
         helpTxtPanel.add(jtxtpane("3) Supprimer une note (saisir delet ou d)",new Color(0,153,0),0,200));
         helpTxtPanel.add(jtxtpane("4) Voir la note (saisir view ou v)",new Color(0,153,0),0,220));
-        this.interpreteur.setContentPane(helpTxtPanel);
+        helpTxtPanel.add(jtxtpane("5) Rechercher une note (saisir search ou s)",new Color(0,153,0),0,240));
+        return helpTxtPanel ;
+    }
+
+    private void setListener(JPanel listenerPanel){
+        JTextPane textPane = new JTextPane();
+        textPane.setEditable(false);
+        textPane.setBounds(0,320,20,20);
+        textPane.setBackground(Color.black);
+        Font f = new Font("Consolas",Font.BOLD,16);
+        textPane.setForeground(Color.white);
+        textPane.setFont(f);
+        textPane.setText(">");
+
+        listenerPanel.add(textPane);
+
+        JTextField jTextField = new JTextField();
+        jTextField.setBounds(20,320,600,20);
+        jTextField.setBackground(Color.black);
+        jTextField.setForeground(Color.white);
+        jTextField.setFont(f);
+
+        listenerPanel.add(jTextField);
+
+        this.interpreteur.setContentPane(listenerPanel);
+
     }
 
     public void Afficher(){
-        this.setHelpText();
+        JPanel J = this.setHelpText();
+        this.setListener(J);
         this.interpreteur.setVisible(true);
 
     }
