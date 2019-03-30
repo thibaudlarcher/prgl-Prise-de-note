@@ -8,8 +8,9 @@ public class Edit {
 
     public static void main(String[] args){
 
-        if(args.length == 1){
-
+        if(args.length == 0){
+            Interpreteur inter = new Interpreteur();
+            inter.Afficher();
         }else{
             System.out.println("                    _                _                    _");
             System.out.println("         _ __  _ __(_)___  ___    __| | ___   _ __   ___ | |_ ___");
