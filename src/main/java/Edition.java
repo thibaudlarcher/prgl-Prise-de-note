@@ -6,7 +6,7 @@ public class Edition {
     }
 
     public void ProcessEdit(String str){
-        if(str == ""){
+        if(str.equals("")){
             String[] command = {"code","NewFile.adoc"};
             try {
                 Runtime.getRuntime().exec(command);
