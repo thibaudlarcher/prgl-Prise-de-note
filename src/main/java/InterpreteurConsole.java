@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+import static java.lang.System.exit;
+
 public class InterpreteurConsole {
     public InterpreteurConsole() {
         System.out.println("                    _                _                    _");
@@ -17,16 +19,16 @@ public class InterpreteurConsole {
         System.out.println("5) Rechercher une note (saisir search ou s)");
         Scanner sc = new Scanner(System.in);
         String str = sc.nextLine();
-        while(str != "exit"){
-            TakeAction("str");
+        while(true){
+            TakeAction(str);
             str = sc.nextLine();
         }
     }
 
     private void TakeAction(String commande){
-        System.out.println("TakeAction");
-        if(commande.length() >= 3 && commande.substring(0,4).equals("edit")){
-            System.out.println("EDIT");
+        if(commande.length() >= 3 && commande.substring(0,4).equals("exit")){
+            exit(0);
+        } else if(commande.length() >= 3 && commande.substring(0,4).equals("edit")){
             if(commande.length() == 4 || commande.length() == 5)
             {
                 new Edition().ProcessEdit("");

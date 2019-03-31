@@ -14,11 +14,15 @@ public class Edit {
             new InterpreteurConsole();
         }else{
             if(args[0].equals("e") || args[0].equals("edit")) {
-                new Edition().ProcessEdit(args[1]);
-            }else if(args[0].equals("f") || args[0].equals("Fenetre")) {
+                if(args.length == 1){
+                    new Edition().ProcessEdit("");
+                } else {
+                    new Edition().ProcessEdit(args[1]);
+                }
+            }else if(args[0].equals("f") || args[0].equals("fenetre")) {
                 InterpreteurFenetre inter = new InterpreteurFenetre();
                 inter.Afficher();
-            }else if(args[0].equals("f") || args[0].equals("fenestre")) {
+            }else if(args[0].equals("c") || args[0].equals("console")) {
                 new InterpreteurConsole();
             }
         }
