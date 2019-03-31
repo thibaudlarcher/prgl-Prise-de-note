@@ -14,10 +14,14 @@ public class Edit {
             new InterpreteurConsole();
         }else{
             if(args[0].equals("e") || args[0].equals("edit")) {
-                if(args.length == 1){
+                if (args.length == 1) {
                     new Edition().ProcessEdit("");
                 } else {
                     new Edition().ProcessEdit(args[1]);
+                }
+            }else if (args[0].equals("ls") || args[0].equals("list")){
+                if(args.length == 1) {
+                    new listing().list("");
                 }
             }else if(args[0].equals("f") || args[0].equals("fenetre")) {
                 InterpreteurFenetre inter = new InterpreteurFenetre();

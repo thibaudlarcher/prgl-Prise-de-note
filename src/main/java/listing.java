@@ -18,43 +18,33 @@ public class listing {
     }
 
     public void list(String str){
-
-        if (str.substring(0,2).equals("ls")) {
+        if (str.equals("")) {
+            String[] command = {"ls","*.adoc","target"};
+            Process process = null;
             try {
-                if (str.substring(2).equals("")) {
-                    String[] command = {"ls", "target"};
-                    Process process = Runtime.getRuntime().exec(command);
-                    affichageList(process,"target");
-                    process.waitFor();
-                }else{
-                    String[] command = {"ls", str.substring(2)};
-                    Process process = Runtime.getRuntime().exec(command);
-                   affichageList(process,str.substring(2));
-                    process.waitFor();
-                }
+                process = Runtime.getRuntime().exec(command);
             } catch (IOException e) {
-                e.printStackTrace();
-            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }else if (str.substring(0,4).equals("list")){
             try {
-                if (str.substring(4).equals("")) {
-                    String[] command = {"ls", "target"};
-                    Process process = Runtime.getRuntime().exec(command);
-                    affichageList(process,"target");
-                    process.waitFor();
-                }else{
-                    String[] command = {"ls", str.substring(4)};
-                    Process process = Runtime.getRuntime().exec(command);
-                    affichageList(process,str.substring(4));
-                    process.waitFor();
-                }
+                affichageList(process,"target");
             } catch (IOException e) {
                 e.printStackTrace();
-            } catch (InterruptedException e) {
+            }
+        }else{
+            String[] command = {"ls","*.adoc", str};
+            Process process = null;
+            try {
+                process = Runtime.getRuntime().exec(command);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            try {
+                affichageList(process,str);
+            } catch (IOException e) {
                 e.printStackTrace();
             }
         }
     }
 }
+
