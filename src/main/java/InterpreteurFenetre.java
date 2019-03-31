@@ -1,11 +1,13 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 
-public class Interpreteur {
+public class InterpreteurFenetre{
 
     private JFrame interpreteur;
 
-    public Interpreteur() {
+    public InterpreteurFenetre() {
         this.interpreteur = new JFrame("Interpréteur Notes");
         this.interpreteur.setSize(700,400);
         this.interpreteur.setLayout(null);
@@ -50,6 +52,24 @@ public class Interpreteur {
         return helpTxtPanel ;
     }
 
+    private void TakeAction(String commande){
+        if(commande.length() >= 3 && commande.substring(0,4).equals("edit")){
+            if(commande.length() == 4 || commande.length() == 5)
+            {
+                new Edition().ProcessEdit("");
+            }else{
+                new Edition().ProcessEdit(commande.substring(5));
+            }
+        }else if(commande.length() >= 1 && commande.substring(0,1).equals("e")){
+            if(commande.length() == 1 || commande.length() == 2)
+            {
+                new Edition().ProcessEdit("");
+            }else{
+                new Edition().ProcessEdit(commande.substring(2));
+            }
+        }
+    }
+
     private void setListener(JPanel listenerPanel){
         JTextPane textPane = new JTextPane();
         textPane.setEditable(false);
@@ -62,11 +82,33 @@ public class Interpreteur {
 
         listenerPanel.add(textPane);
 
-        JTextField jTextField = new JTextField();
+        final JTextField jTextField = new JTextField();
         jTextField.setBounds(20,320,600,20);
         jTextField.setBackground(Color.black);
         jTextField.setForeground(Color.white);
         jTextField.setFont(f);
+        jTextField.addKeyListener(new KeyListener() {
+
+            @Override
+            public void keyTyped(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if(e.getKeyCode() == e.VK_ENTER){
+                    String commande = jTextField.getText();
+                    System.out.println(commande);
+                    TakeAction(commande);
+                    jTextField.setText("");
+                }
+            }
+        });
 
         listenerPanel.add(jTextField);
 
