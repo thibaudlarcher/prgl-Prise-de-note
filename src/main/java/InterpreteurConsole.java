@@ -26,9 +26,9 @@ public class InterpreteurConsole {
     }
 
     private void TakeAction(String commande){
-        if(commande.length() >= 3 && commande.substring(0,4).equals("exit")){
+        if(commande.length() >= 3 && commande.substring(0,4).equals("exit")) {
             exit(0);
-        } else if(commande.length() >= 3 && commande.substring(0,4).equals("edit")){
+        }else if(commande.length() >= 4 && commande.substring(0,4).equals("edit")){
             if(commande.length() == 4 || commande.length() == 5)
             {
                 new Edition().ProcessEdit("");
@@ -41,6 +41,20 @@ public class InterpreteurConsole {
                 new Edition().ProcessEdit("");
             }else{
                 new Edition().ProcessEdit(commande.substring(2));
+            }
+        }else if(commande.length() >= 2 && commande.substring(0,2).equals("ls")){
+            if(commande.length() == 2 || commande.length() == 3)
+            {
+                new listing().list("");
+            }else{
+                new listing().list(commande.substring(3));
+            }
+        } else if(commande.length() >= 4 && commande.substring(0,4).equals("list")){
+            if(commande.length() == 4 || commande.length() == 5)
+            {
+                new listing().list("");
+            }else{
+                new listing().list(commande.substring(5));
             }
         }
     }

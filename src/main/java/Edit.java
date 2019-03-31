@@ -22,6 +22,8 @@ public class Edit {
             }else if (args[0].equals("ls") || args[0].equals("list")){
                 if(args.length == 1) {
                     new listing().list("");
+                } else {
+                    new listing().list(args[1]);
                 }
             }else if(args[0].equals("f") || args[0].equals("fenetre")) {
                 InterpreteurFenetre inter = new InterpreteurFenetre();
