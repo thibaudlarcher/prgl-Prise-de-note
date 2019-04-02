@@ -7,16 +7,32 @@ public class Edition {
 
     public void ProcessEdit(String str){
         if(str.equals("")){
-            String[] command = {"code","NewFile.adoc"};
             try {
-                Runtime.getRuntime().exec(command);
+                if(OSRecognizer.isWindows()) {
+                    String[] command = {"notepad","NewFile.adoc"};
+                    Runtime.getRuntime().exec(command);
+                }else if(OSRecognizer.isMac()) {
+                    String[] command = {"code","NewFile.adoc"};
+                    Runtime.getRuntime().exec(command);
+                }else {
+                    String[] command = {"code","NewFile.adoc"};
+                    Runtime.getRuntime().exec(command);
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }else{
-            String[] command = {"code",str + ".adoc"};
             try {
-                Runtime.getRuntime().exec(command);
+                if(OSRecognizer.isWindows()) {
+                    String[] command = {"notepad",str + ".adoc"};
+                    Runtime.getRuntime().exec(command);
+                }else if(OSRecognizer.isMac()) {
+                    String[] command = {"code",str + ".adoc"};
+                    Runtime.getRuntime().exec(command);
+                }else {
+                    String[] command = {"code",str + ".adoc"};
+                    Runtime.getRuntime().exec(command);
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
