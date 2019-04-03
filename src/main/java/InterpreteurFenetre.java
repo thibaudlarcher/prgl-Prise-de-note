@@ -5,11 +5,12 @@ import java.awt.event.KeyListener;
 
 import static java.lang.System.exit;
 
-public class InterpreteurFenetre{
+public class InterpreteurFenetre implements Command{
 
     private JFrame interpreteur;
-
-    public InterpreteurFenetre() {
+    private String paths;
+    public InterpreteurFenetre(String paths) {
+        this.paths = paths;
         this.interpreteur = new JFrame("Interpréteur Notes");
         this.interpreteur.setSize(700,400);
         this.interpreteur.setLayout(null);
@@ -54,40 +55,6 @@ public class InterpreteurFenetre{
         return helpTxtPanel ;
     }
 
-    private void TakeAction(String commande){
-        if(commande.length() >= 3 && commande.substring(0,4).equals("exit")) {
-            exit(0);
-        }else if(commande.length() >= 4 && commande.substring(0,4).equals("edit")){
-            if(commande.length() == 4 || commande.length() == 5)
-            {
-                new Edition().ProcessEdit("");
-            }else{
-                new Edition().ProcessEdit(commande.substring(5));
-            }
-        }else if(commande.length() >= 1 && commande.substring(0,1).equals("e")){
-            if(commande.length() == 1 || commande.length() == 2)
-            {
-                new Edition().ProcessEdit("");
-            }else{
-                new Edition().ProcessEdit(commande.substring(2));
-            }
-        }else if(commande.length() >= 2 && commande.substring(0,2).equals("ls")){
-            if(commande.length() == 2 || commande.length() == 3)
-            {
-                new listing().list("");
-            }else{
-                new listing().list(commande.substring(3));
-            }
-        } else if(commande.length() >= 4 && commande.substring(0,2).equals("list")){
-            if(commande.length() == 4 || commande.length() == 5)
-            {
-                new listing().list("");
-            }else{
-                new listing().list(commande.substring(5));
-            }
-        }
-    }
-
     private void setListener(JPanel listenerPanel){
         JTextPane textPane = new JTextPane();
         textPane.setEditable(false);
@@ -122,7 +89,7 @@ public class InterpreteurFenetre{
                 if(e.getKeyCode() == e.VK_ENTER){
                     String commande = jTextField.getText();
                     System.out.println(commande);
-                    TakeAction(commande);
+                    command(commande);
                     jTextField.setText("");
                 }
             }
@@ -139,5 +106,47 @@ public class InterpreteurFenetre{
         this.setListener(J);
         this.interpreteur.setVisible(true);
 
+    }
+
+    @Override
+    public void command(String str) {
+        if(str.length() >= 3 && str.substring(0,4).equals("exit")) {
+            exit(0);
+        }else if(str.length() >= 4 && str.substring(0,4).equals("edit")){
+            if(str.length() == 4 || str.length() == 5)
+            {
+                new Edition(paths).command("");
+            }else{
+                new Edition(paths).command(str.substring(5));
+            }
+        }else if(str.length() >= 1 && str.substring(0,1).equals("e")){
+            if(str.length() == 1 || str.length() == 2)
+            {
+                new Edition(paths).command("");
+            }else{
+                new Edition(paths).command(str.substring(2));
+            }
+        }else if(str.length() >= 2 && str.substring(0,2).equals("ls")){
+            if(str.length() == 2 || str.length() == 3)
+            {
+                new listing(paths).command("");
+            }else{
+                new listing(paths).command(str.substring(3));
+            }
+        } else if(str.length() >= 4 && str.substring(0,2).equals("list")){
+            if(str.length() == 4 || str.length() == 5)
+            {
+                new listing(paths).command("");
+            }else{
+                new listing(paths).command(str.substring(5));
+            }
+        }
+    }
+
+    @Override
+    public boolean isEqual(String str) {
+        if(str.equals("f") || str.equals("fenetre"))
+            return true;
+        return false;
     }
 }

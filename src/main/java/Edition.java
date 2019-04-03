@@ -1,11 +1,13 @@
 import java.io.IOException;
 
-public class Edition {
-
-    public Edition() {
+public class Edition implements Command{
+    private String paths;
+    public Edition(String paths) {
+        this.paths = paths;
     }
 
-    public void ProcessEdit(String str){
+    @Override
+    public void command(String str) {
         if(str.equals("")){
             String[] command = {"code","NewFile.adoc"};
             try {
@@ -21,5 +23,13 @@ public class Edition {
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public boolean isEqual(String str) {
+        if(str.equals("e") || str.equals("edit")){
+            return true;
+        }
+        return false;
     }
 }
