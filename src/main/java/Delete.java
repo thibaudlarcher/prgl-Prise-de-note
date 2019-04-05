@@ -1,9 +1,9 @@
 import java.io.IOException;
 
-public class delete implements Command {
+public class Delete implements Command {
     private String path;
 
-    public delete(String path) {
+    public Delete(String path) {
         this.path = path;
     }
 

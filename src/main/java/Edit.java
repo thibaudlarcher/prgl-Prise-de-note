@@ -1,9 +1,3 @@
-import java.awt.*;
-import java.io.IOException;
-import java.util.Scanner;
-
-import static java.lang.System.exit;
-
 public class Edit {
 
     public static void main(String[] args){
@@ -23,7 +17,7 @@ public class Edit {
                     C.command(args[1]);
                 }
 
-            }else{ C = new listing("/target");
+            }else{ C = new Listing("/target");
                 if (C.isEqual(args[0])){
                     if(args.length == 1) {
                      C.command("");

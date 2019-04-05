@@ -2,10 +2,10 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class listing implements Command {
+public class Listing implements Command {
     private String paths;
 
-    public listing(String paths){
+    public Listing(String paths){
         this.paths = paths;
     }
 

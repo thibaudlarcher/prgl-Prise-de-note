@@ -16,7 +16,7 @@ public class InterpreteurConsole implements Command{
         System.out.println("\033[0;32m" + "Vous avez plusieurs possibilité de choix :");
         System.out.println("1) Créer ou modifier une note (saisir edit ou e)");
         System.out.println("2) Lister les notes existantes (saisire list ou ls)");
-        System.out.println("3) Supprimer une note (saisir delete ou d)");
+        System.out.println("3) Supprimer une note (saisir Delete ou d)");
         System.out.println("4) Voir la note (saisir view ou v)");
         System.out.println("5) Rechercher une note (saisir search ou s)");
     }
@@ -42,23 +42,23 @@ public class InterpreteurConsole implements Command{
                 }
             } else if (st.length() >= 2 && st.substring(0, 2).equals("ls")) {
                 if (st.length() == 2 || st.length() == 3) {
-                    new listing(paths).command("");
+                    new Listing(paths).command("");
                 } else {
-                    new listing(paths).command(st.substring(3));
+                    new Listing(paths).command(st.substring(3));
                 }
             } else if (st.length() >= 4 && st.substring(0, 4).equals("list")) {
                 if (st.length() == 4 || st.length() == 5) {
-                    new listing(paths).command("");
+                    new Listing(paths).command("");
                 } else {
-                    new listing(paths).command(st.substring(5));
+                    new Listing(paths).command(st.substring(5));
                 }
-            } else if (st.length() >= 6 && st.substring(0, 6).equals("delete")) {
+            } else if (st.length() >= 6 && st.substring(0, 6).equals("Delete")) {
                 if (st.length() >= 7) {
-                    new delete(paths).command(st.substring(7));
+                    new Delete(paths).command(st.substring(7));
                 }
             } else if (st.length() >= 1 && st.substring(0, 1).equals("d")) {
                 if (st.length() >= 2) {
-                    new delete(paths).command(st.substring(2));
+                    new Delete(paths).command(st.substring(2));
                 }
             }
             st = sc.nextLine();
