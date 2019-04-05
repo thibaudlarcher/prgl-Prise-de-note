@@ -1,38 +1,37 @@
-import java.io.IOException;
+import java.io.*;
 
 public class Edition {
-
+    static String programme = null;
     public Edition() {
     }
 
     public void ProcessEdit(String str){
+        if(programme == null){
+            System.out.println("test");
+            File f = new File("notes.properties");
+            try {
+                BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(f)));
+                programme = br.readLine();
+
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
         if(str.equals("")){
             try {
-                if(OSRecognizer.isWindows()) {
-                    String[] command = {"notepad","NewFile.adoc"};
-                    Runtime.getRuntime().exec(command);
-                }else if(OSRecognizer.isMac()) {
-                    String[] command = {"code","NewFile.adoc"};
-                    Runtime.getRuntime().exec(command);
-                }else {
-                    String[] command = {"code","NewFile.adoc"};
-                    Runtime.getRuntime().exec(command);
-                }
+                String[] command = {programme,"NewFile.adoc"};
+                Runtime.getRuntime().exec(command);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }else{
             try {
-                if(OSRecognizer.isWindows()) {
-                    String[] command = {"notepad",str + ".adoc"};
-                    Runtime.getRuntime().exec(command);
-                }else if(OSRecognizer.isMac()) {
-                    String[] command = {"code",str + ".adoc"};
-                    Runtime.getRuntime().exec(command);
-                }else {
-                    String[] command = {"code",str + ".adoc"};
-                    Runtime.getRuntime().exec(command);
-                }
+                String[] command = {programme,str + ".adoc"};
+                Runtime.getRuntime().exec(command);
             } catch (IOException e) {
                 e.printStackTrace();
             }
