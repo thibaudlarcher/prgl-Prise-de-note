@@ -15,9 +15,9 @@ public class InterpreteurConsole implements Command{
         System.out.println("\033[1;31m" + "Bienvenue sur l'application de prise de note !");
         System.out.println("\033[0;32m" + "Vous avez plusieurs possibilité de choix :");
         System.out.println("1) Créer ou modifier une note (saisir edit ou e)");
-        System.out.println("2) Lister les notes existantes (saisire list ou ls)");
+        System.out.println("2) Lister les notes existantes (saisir list ou ls)");
         System.out.println("3) Supprimer une note (saisir delete ou d)");
-        System.out.println("4) Voir la note (saisir view ou v)");
+        System.out.println("4) Voir une note (saisir View ou v)");
         System.out.println("5) Rechercher une note (saisir search ou s)");
     }
 
@@ -59,6 +59,14 @@ public class InterpreteurConsole implements Command{
             } else if (st.length() >= 1 && st.substring(0, 1).equals("d")) {
                 if (st.length() >= 2) {
                     new delete(paths).command(st.substring(2));
+                }
+            } else if (st.length() >= 4 && st.substring(0, 4).equals("View")) {
+                if (st.length() >= 5) {
+                    new View(paths).command(st.substring(5));
+                }
+            } else if (st.length() >= 1 && st.substring(0, 1).equals("v")) {
+                if (st.length() >= 2) {
+                    new View(paths).command(st.substring(2));
                 }
             }
             st = sc.nextLine();
