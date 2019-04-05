@@ -5,11 +5,12 @@ import java.awt.event.KeyListener;
 
 import static java.lang.System.exit;
 
-public class InterpreteurFenetre{
+public class InterpreteurFenetre implements Command{
 
     private JFrame interpreteur;
-
-    public InterpreteurFenetre() {
+    private String paths;
+    public InterpreteurFenetre(String paths) {
+        this.paths = paths;
         this.interpreteur = new JFrame("Interpréteur Notes");
         this.interpreteur.setSize(700,400);
         this.interpreteur.setLayout(null);
@@ -48,44 +49,10 @@ public class InterpreteurFenetre{
         helpTxtPanel.add(jtxtpane("Vous avez plusieurs possibilité de choix :",new Color(0,153,0),0,154));
         helpTxtPanel.add(jtxtpane("1) Créer ou modifier une note (saisir edit ou e)",new Color(0,153,0),0,176));
         helpTxtPanel.add(jtxtpane("2) Lister les notes existantes (saisire list ou ls)",new Color(0,153,0),0,198));
-        helpTxtPanel.add(jtxtpane("3) Supprimer une note (saisir delet ou d)",new Color(0,153,0),0,220));
+        helpTxtPanel.add(jtxtpane("3) Supprimer une note (saisir delete ou d)",new Color(0,153,0),0,220));
         helpTxtPanel.add(jtxtpane("4) Voir la note (saisir view ou v)",new Color(0,153,0),0,242));
         helpTxtPanel.add(jtxtpane("5) Rechercher une note (saisir search ou s)",new Color(0,153,0),0,264));
         return helpTxtPanel ;
-    }
-
-    private void TakeAction(String commande){
-        if(commande.length() >= 3 && commande.substring(0,4).equals("exit")) {
-            exit(0);
-        }else if(commande.length() >= 4 && commande.substring(0,4).equals("edit")){
-            if(commande.length() == 4 || commande.length() == 5)
-            {
-                new Edition().ProcessEdit("");
-            }else{
-                new Edition().ProcessEdit(commande.substring(5));
-            }
-        }else if(commande.length() >= 1 && commande.substring(0,1).equals("e")){
-            if(commande.length() == 1 || commande.length() == 2)
-            {
-                new Edition().ProcessEdit("");
-            }else{
-                new Edition().ProcessEdit(commande.substring(2));
-            }
-        }else if(commande.length() >= 2 && commande.substring(0,2).equals("ls")){
-            if(commande.length() == 2 || commande.length() == 3)
-            {
-                new listing().list("");
-            }else{
-                new listing().list(commande.substring(3));
-            }
-        } else if(commande.length() >= 4 && commande.substring(0,2).equals("list")){
-            if(commande.length() == 4 || commande.length() == 5)
-            {
-                new listing().list("");
-            }else{
-                new listing().list(commande.substring(5));
-            }
-        }
     }
 
     private void setListener(JPanel listenerPanel){
@@ -122,7 +89,7 @@ public class InterpreteurFenetre{
                 if(e.getKeyCode() == e.VK_ENTER){
                     String commande = jTextField.getText();
                     System.out.println(commande);
-                    TakeAction(commande);
+                    command(commande);
                     jTextField.setText("");
                 }
             }
@@ -139,5 +106,55 @@ public class InterpreteurFenetre{
         this.setListener(J);
         this.interpreteur.setVisible(true);
 
+    }
+
+    @Override
+    public void command(String str) {
+        if(str.length() >= 3 && str.substring(0,4).equals("exit")) {
+            exit(0);
+        }else if(str.length() >= 4 && str.substring(0,4).equals("edit")){
+            if(str.length() == 4 || str.length() == 5)
+            {
+                new Edition(paths).command("");
+            }else{
+                new Edition(paths).command(str.substring(5));
+            }
+        }else if(str.length() >= 1 && str.substring(0,1).equals("e")){
+            if(str.length() == 1 || str.length() == 2)
+            {
+                new Edition(paths).command("");
+            }else{
+                new Edition(paths).command(str.substring(2));
+            }
+        } else if(str.length() >= 2 && str.substring(0,2).equals("ls")){
+            if(str.length() == 2 || str.length() == 3)
+            {
+                new listing(paths).command("");
+            }else{
+                new listing(paths).command(str.substring(3));
+            }
+        } else if(str.length() >= 4 && str.substring(0,2).equals("list")){
+            if(str.length() == 4 || str.length() == 5)
+            {
+                new listing(paths).command("");
+            } else{
+                new listing(paths).command(str.substring(5));
+            }
+        } else if (str.length() >= 6 && str.substring(0, 6).equals("delete")) {
+            if (str.length() >= 7) {
+                new delete(paths).command(str.substring(7));
+            }
+        } else if (str.length() >= 1 && str.substring(0, 1).equals("d")) {
+            if (str.length() >= 2) {
+                new delete(paths).command(str.substring(2));
+            }
+        }
+    }
+
+    @Override
+    public boolean isEqual(String str) {
+        if(str.equals("f") || str.equals("fenetre"))
+            return true;
+        return false;
     }
 }

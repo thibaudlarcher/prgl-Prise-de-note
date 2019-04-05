@@ -2,8 +2,12 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class listing {
-    public listing(){}
+public class listing implements Command {
+    private String paths;
+
+    public listing(String paths){
+        this.paths = paths;
+    }
 
     private void affichageList(Process process,String str) throws IOException {
         StringBuilder output = new StringBuilder();
@@ -17,7 +21,8 @@ public class listing {
         System.out.println(output+"\033[0m");
     }
 
-    public void list(String str){
+    @Override
+    public void command(String str) {
         if (str.equals("")) {
             String[] command = {"ls","*.adoc","target"};
             Process process = null;
@@ -45,6 +50,13 @@ public class listing {
                 e.printStackTrace();
             }
         }
+    }
+
+    @Override
+    public boolean isEqual(String str) {
+        if(str.equals("ls") || str.equals("list"))
+            return true;
+        return false;
     }
 }
 
