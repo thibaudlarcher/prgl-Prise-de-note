@@ -1,3 +1,6 @@
 prgl-Prise-de-note.iml
 .idea/
 target/
+*.properties
+*.adoc
+notes/

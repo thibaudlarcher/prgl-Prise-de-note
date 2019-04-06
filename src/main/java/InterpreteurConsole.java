@@ -19,6 +19,7 @@ public class InterpreteurConsole implements Command{
         System.out.println("3) Supprimer une note (saisir delete ou d)");
         System.out.println("4) Voir la note (saisir view ou v)");
         System.out.println("5) Rechercher une note (saisir search ou s)");
+        System.out.println("6) Changer dossier de sauvegarde (saisir paths ou p)");
     }
 
     @Override
@@ -68,6 +69,18 @@ public class InterpreteurConsole implements Command{
                 if (st.length() >= 2) {
                     new View(paths).command(st.substring(2));
                 }
+            } else if (st.length() >= 4 && st.substring(0, 4).equals("paths")) {
+                    if (st.length() >= 5) {
+                        pathsChooser p = new pathsChooser();
+                        p.command(st.substring(5));
+                        this.paths = p.getPaths();
+                    }
+            } else if (st.length() >= 1 && st.substring(0, 1).equals("p")) {
+                    if (st.length() >= 2) {
+                        pathsChooser p = new pathsChooser();
+                        p.command(st.substring(2));
+                        this.paths = p.getPaths();
+                    }
             }
             st = sc.nextLine();
 

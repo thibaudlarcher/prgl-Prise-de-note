@@ -52,6 +52,7 @@ public class InterpreteurFenetre implements Command{
         helpTxtPanel.add(jtxtpane("3) Supprimer une note (saisir delete ou d)",new Color(0,153,0),0,220));
         helpTxtPanel.add(jtxtpane("4) Voir la note (saisir view ou v)",new Color(0,153,0),0,242));
         helpTxtPanel.add(jtxtpane("5) Rechercher une note (saisir search ou s)",new Color(0,153,0),0,264));
+        helpTxtPanel.add(jtxtpane("6) Changer dossier de sauvegarde (saisir paths ou p)",new Color(0,153,0),0,264));
         return helpTxtPanel ;
     }
 
@@ -129,8 +130,10 @@ public class InterpreteurFenetre implements Command{
         } else if(str.length() >= 2 && str.substring(0,2).equals("ls")){
             if(str.length() == 2 || str.length() == 3)
             {
+                System.out.println(paths);
                 new Listing(paths).command("");
             }else{
+                System.out.println(paths);
                 new Listing(paths).command(str.substring(3));
             }
         } else if(str.length() >= 4 && str.substring(0,2).equals("list")){
@@ -148,7 +151,20 @@ public class InterpreteurFenetre implements Command{
             if (str.length() >= 2) {
                 new Delete(paths).command(str.substring(2));
             }
+        } else if (str.length() >= 4 && str.substring(0, 4).equals("paths")) {
+             if (str.length() >= 5) {
+                 pathsChooser p = new pathsChooser();
+                 p.command(str.substring(5));
+                 this.paths = p.getPaths();
+             }
+        } else if (str.length() >= 1 && str.substring(0, 1).equals("p")) {
+        if (str.length() >= 2) {
+
+            pathsChooser p = new pathsChooser();
+            p.command(str.substring(2));
+            this.paths = p.getPaths();
         }
+    }
     }
 
     @Override

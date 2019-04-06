@@ -14,7 +14,6 @@ public class Edition implements Command{
         }else{
             str2 = str;
         }
-        System.out.println(paths);
         File f = new File(paths+str2+".adoc");
         if(!(f.exists())) {
             try {
@@ -46,6 +45,7 @@ public class Edition implements Command{
 
         if(str.equals("")){
             try {
+                System.out.println(paths);
                 String p = paths + "NewFile.adoc";
                 String[] command = {programme,p };
                 Runtime.getRuntime().exec(command);
