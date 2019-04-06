@@ -5,8 +5,7 @@ import java.io.InputStreamReader;
 public class Listing implements Command {
     private String paths;
 
-    public Listing(String paths){
-        this.paths = paths;
+    public Listing(){
     }
 
     private void affichageList(Process process) throws IOException {
@@ -44,11 +43,6 @@ public class Listing implements Command {
                 e.printStackTrace();
             }
         }
-    }
-
-    @Override
-    public boolean isEqual(String str) {
-        return str.equals("ls") || str.equals("list");
     }
 }
 

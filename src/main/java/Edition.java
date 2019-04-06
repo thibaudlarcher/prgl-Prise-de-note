@@ -4,8 +4,7 @@ import java.time.LocalDate;
 public class Edition implements Command{
     static String programme = null;
     private String paths;
-    public Edition(String paths) {
-        this.paths = paths;
+    public Edition(){
     }
 
     private void creationFile(String str){
@@ -63,10 +62,5 @@ public class Edition implements Command{
                 e.printStackTrace();
             }
         }
-    }
-
-    @Override
-    public boolean isEqual(String str) {
-        return str.equals("e") || str.equals("edit");
     }
 }

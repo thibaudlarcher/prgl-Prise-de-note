@@ -3,8 +3,7 @@ import java.io.IOException;
 public class Delete implements Command {
     private String path;
 
-    public Delete(String path) {
-        this.path = path;
+    public Delete() {
     }
 
     @Override
@@ -24,10 +23,5 @@ public class Delete implements Command {
                 e.printStackTrace();
             }
         }
-    }
-
-    @Override
-    public boolean isEqual (String str){
-        return str.equals("delete") || str.equals("d");
     }
 }
