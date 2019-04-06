@@ -46,10 +46,10 @@ public class InterpreteurFenetre implements Command{
         helpTxtPanel.add(jtxtpane("        | .__/|_|  |_|___/\\___|  \\__,_|\\___| |_| |_|\\___/ \\__\\___|",Color.white,0,88));
         helpTxtPanel.add(jtxtpane("        |_|",Color.white,0,110));
         helpTxtPanel.add(jtxtpane("Bienvenue sur l'application de prise de note !",new Color(230,0,0),0,132));
-        helpTxtPanel.add(jtxtpane("Vous avez plusieurs possibilité de choix :",new Color(0,153,0),0,154));
+        helpTxtPanel.add(jtxtpane("Vous avez plusieurs possibilités de choix :",new Color(0,153,0),0,154));
         helpTxtPanel.add(jtxtpane("1) Créer ou modifier une note (saisir edit ou e)",new Color(0,153,0),0,176));
-        helpTxtPanel.add(jtxtpane("2) Lister les notes existantes (saisire list ou ls)",new Color(0,153,0),0,198));
-        helpTxtPanel.add(jtxtpane("3) Supprimer une note (saisir Delete ou d)",new Color(0,153,0),0,220));
+        helpTxtPanel.add(jtxtpane("2) Lister les notes existantes (saisir list ou ls)",new Color(0,153,0),0,198));
+        helpTxtPanel.add(jtxtpane("3) Supprimer une note (saisir delete ou d)",new Color(0,153,0),0,220));
         helpTxtPanel.add(jtxtpane("4) Voir la note (saisir view ou v)",new Color(0,153,0),0,242));
         helpTxtPanel.add(jtxtpane("5) Rechercher une note (saisir search ou s)",new Color(0,153,0),0,264));
         return helpTxtPanel ;
