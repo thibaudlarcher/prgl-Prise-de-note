@@ -8,9 +8,8 @@ import static java.lang.System.exit;
 public class InterpreteurFenetre implements Command{
 
     private JFrame interpreteur;
-    private String paths;
-    public InterpreteurFenetre(String paths) {
-        this.paths = paths;
+
+    public InterpreteurFenetre() {
         this.interpreteur = new JFrame("Interpréteur Notes");
         this.interpreteur.setSize(700,400);
         this.interpreteur.setLayout(null);
@@ -87,10 +86,9 @@ public class InterpreteurFenetre implements Command{
 
             @Override
             public void keyReleased(KeyEvent e) {
-                if(e.getKeyCode() == e.VK_ENTER){
+                if(e.getKeyCode() == KeyEvent.VK_ENTER){
                     String commande = jTextField.getText();
-                    System.out.println(commande);
-                    command(commande);
+                    InterpreteurGlobal.execute(commande.split(" "));
                     jTextField.setText("");
                 }
             }
@@ -102,7 +100,7 @@ public class InterpreteurFenetre implements Command{
 
     }
 
-    public void Afficher(){
+    private void Afficher(){
         JPanel J = this.setHelpText();
         this.setListener(J);
         this.interpreteur.setVisible(true);
@@ -111,66 +109,6 @@ public class InterpreteurFenetre implements Command{
 
     @Override
     public void command(String str) {
-        if(str.length() >= 3 && str.substring(0,4).equals("exit")) {
-            exit(0);
-        }else if(str.length() >= 4 && str.substring(0,4).equals("edit")){
-            if(str.length() == 4 || str.length() == 5)
-            {
-                new Edition(paths).command("");
-            }else{
-                new Edition(paths).command(str.substring(5));
-            }
-        }else if(str.length() >= 1 && str.substring(0,1).equals("e")){
-            if(str.length() == 1 || str.length() == 2)
-            {
-                new Edition(paths).command("");
-            }else{
-                new Edition(paths).command(str.substring(2));
-            }
-        } else if(str.length() >= 2 && str.substring(0,2).equals("ls")){
-            if(str.length() == 2 || str.length() == 3)
-            {
-                System.out.println(paths);
-                new Listing(paths).command("");
-            }else{
-                System.out.println(paths);
-                new Listing(paths).command(str.substring(3));
-            }
-        } else if(str.length() >= 4 && str.substring(0,2).equals("list")){
-            if(str.length() == 4 || str.length() == 5)
-            {
-                new Listing(paths).command("");
-            } else{
-                new Listing(paths).command(str.substring(5));
-            }
-        } else if (str.length() >= 6 && str.substring(0, 6).equals("Delete")) {
-            if (str.length() >= 7) {
-                new Delete(paths).command(str.substring(7));
-            }
-        } else if (str.length() >= 1 && str.substring(0, 1).equals("d")) {
-            if (str.length() >= 2) {
-                new Delete(paths).command(str.substring(2));
-            }
-        } else if (str.length() >= 4 && str.substring(0, 4).equals("paths")) {
-             if (str.length() >= 5) {
-                 pathsChooser p = new pathsChooser();
-                 p.command(str.substring(5));
-                 this.paths = p.getPaths();
-             }
-        } else if (str.length() >= 1 && str.substring(0, 1).equals("p")) {
-        if (str.length() >= 2) {
-
-            pathsChooser p = new pathsChooser();
-            p.command(str.substring(2));
-            this.paths = p.getPaths();
-        }
-    }
-    }
-
-    @Override
-    public boolean isEqual(String str) {
-        if(str.equals("f") || str.equals("fenetre"))
-            return true;
-        return false;
+        this.Afficher();
     }
 }

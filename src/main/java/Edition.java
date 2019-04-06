@@ -1,10 +1,16 @@
 import java.io.*;
+import java.time.LocalDate;
 
 public class Edition implements Command{
-    static String programme = null;
-    private String paths;
-    public Edition(String paths) {
-        this.paths = paths;
+    private static String programme = null;
+    private static String paths;
+    public Edition(){
+        if(paths == null){
+            paths = PropertiesRead.getPaths();
+        }
+        if(programme == null){
+            programme = PropertiesRead.getApplication();
+        }
     }
 
     private void creationFile(String str){
@@ -18,7 +24,13 @@ public class Edition implements Command{
         if(!(f.exists())) {
             try {
                 FileWriter fw = new FileWriter(f, true);
-                fw.write("= "+str2);
+                fw.write("= "+str2 + "\n");
+                fw.write(System.getProperty("user.name") + "\n");
+                fw.write(LocalDate.now().getDayOfMonth() +
+                        "/"+ LocalDate.now().getMonthValue() +
+                        "/"+LocalDate.now().getYear() + "\n");
+                fw.write(":context:" + "\n");
+                fw.write(":project:" + "\n");
                 fw.close();
             } catch (IOException e) {
                 e.printStackTrace();
@@ -28,24 +40,11 @@ public class Edition implements Command{
 
     @Override
     public void command(String str){
-        if(programme == null){
-            File f = new File("notes.properties");
-            try {
-                BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(f)));
-                programme = br.readLine();
-
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
 
         creationFile(str);
 
         if(str.equals("")){
             try {
-                System.out.println(paths);
                 String p = paths + "NewFile.adoc";
                 String[] command = {programme,p };
                 Runtime.getRuntime().exec(command);
@@ -61,13 +60,5 @@ public class Edition implements Command{
                 e.printStackTrace();
             }
         }
-    }
-
-    @Override
-    public boolean isEqual(String str) {
-        if(str.equals("e") || str.equals("edit")){
-            return true;
-        }
-        return false;
     }
 }

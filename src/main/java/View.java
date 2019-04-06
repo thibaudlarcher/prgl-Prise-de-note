@@ -1,23 +1,25 @@
 import java.io.IOException;
 
 public class View implements Command {
-    private String path;
+    private static String paths;
 
-    public View(String path){
-        this.path = path;
+    public View(){
+        if(paths == null){
+            paths =  PropertiesRead.getPaths();
+        }
     }
 
     @Override
     public void command(String str) {
         if (str.length() >= 5 && str.substring(str.length() - 5).equals(".adoc")) {
-            String[] command = {"open", str};
+            String[] command = {"open",paths + str};
             try {
                 Runtime.getRuntime().exec(command);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
-            String[] command = {"open", str + ".adoc"};
+            String[] command = {"open",paths + str + ".adoc"};
             try {
                 Runtime.getRuntime().exec(command);
             } catch (IOException e) {
@@ -26,11 +28,4 @@ public class View implements Command {
         }
     }
 
-    @Override
-    public boolean isEqual(String str) {
-        if (str.equals("View") || str.equals("v")) {
-            return true;
-        }
-        return false;
-    }
 }

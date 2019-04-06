@@ -1,4 +1,4 @@
-public final class OSRecognizer {
+public class OSRecognizer {
 
     private static String OS = null;
 
