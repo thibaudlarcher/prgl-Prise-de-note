@@ -1,7 +1,5 @@
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.util.Objects;
 
 public class Listing implements Command {
     private static String paths;
@@ -20,7 +18,7 @@ public class Listing implements Command {
         output.append(paths);
         output.append(" :\n");
         File f = new File(paths);
-        for(File f2 : f.listFiles()){
+        for(File f2 : Objects.requireNonNull(f.listFiles())){
             output.append("|    ");
             output.append(f2.getName(), 0, f2.getName().length()-5);
             output.append("\n");

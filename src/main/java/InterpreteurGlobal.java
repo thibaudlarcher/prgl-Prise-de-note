@@ -16,6 +16,7 @@ public class InterpreteurGlobal {
         String command = sb.toString();
 
         switch (args[0]) {
+            case "ex":
             case "exit":
                 exit(0);
             case "e":

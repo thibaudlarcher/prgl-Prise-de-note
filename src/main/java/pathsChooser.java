@@ -4,15 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.File;
 
 import static java.lang.System.exit;
 
 public class pathsChooser extends JPanel implements ActionListener,Command {
 
-    private String paths;
-    private JFileChooser chooser;
-    private String choosertitle;
     public pathsChooser(){
     }
     public void actionPerformed(ActionEvent e) {
@@ -22,7 +18,7 @@ public class pathsChooser extends JPanel implements ActionListener,Command {
         return new Dimension(200, 200);
     }
 
-    public void closeWindow(){
+    private void closeWindow(){
         JFrame J = new JFrame();
         J.setSize(300,200);
         J.setLayout(null);
@@ -56,15 +52,16 @@ public class pathsChooser extends JPanel implements ActionListener,Command {
     @Override
     public void command(String str) {
             JFrame frame = new JFrame("");
-            chooser = new JFileChooser();
+        JFileChooser chooser = new JFileChooser();
             chooser.setCurrentDirectory(new java.io.File("."));
-            chooser.setDialogTitle(choosertitle);
+        String choosertitle = "";
+        chooser.setDialogTitle(choosertitle);
             chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
             chooser.setAcceptAllFileFilterUsed(false);
             frame.setVisible(true);
             //
             if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-                this.paths = String.valueOf(chooser.getSelectedFile());
+                String paths = String.valueOf(chooser.getSelectedFile());
                 PropertiesCreator.updatePropertiesFile(paths);
             } else {
                 System.out.println("Pas de dossier choisit ");

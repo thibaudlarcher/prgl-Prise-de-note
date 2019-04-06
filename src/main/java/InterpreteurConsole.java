@@ -10,14 +10,17 @@ public class InterpreteurConsole implements Command{
         System.out.println("        |_|");
         System.out.println("\033[1;31m" + "Bienvenue sur l'application de prise de note !");
         System.out.println("\033[0;32m" + "Vous avez plusieurs possibilité de choix :");
+        System.out.println("0) Quiter (saisir exit ou ex)");
         System.out.println("1) Créer ou modifier une note (saisir edit ou e)");
         System.out.println("2) Lister les notes existantes (saisir list ou ls)");
         System.out.println("3) Supprimer une note (saisir delete ou d)");
         System.out.println("4) Voir la note (saisir view ou v)");
         System.out.println("5) Rechercher une note (saisir search ou s)");
         System.out.println("6) Changer dossier de sauvegarde (saisir path ou p)");
+        System.out.println("7) Ouvrir le fichier de propriété (saisir properties ou pr)");
     }
 
+    @SuppressWarnings("InfiniteLoopStatement")
     @Override
     public void command(String str) {
         Scanner sc = new Scanner(System.in);
