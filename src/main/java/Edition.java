@@ -1,4 +1,5 @@
 import java.io.*;
+import java.time.LocalDate;
 
 public class Edition implements Command{
     static String programme = null;
@@ -18,7 +19,13 @@ public class Edition implements Command{
         if(!(f.exists())) {
             try {
                 FileWriter fw = new FileWriter(f, true);
-                fw.write("= "+str2);
+                fw.write("= "+str2 + "\n");
+                fw.write(System.getProperty("user.name") + "\n");
+                fw.write(LocalDate.now().getDayOfMonth() +
+                        "/"+ LocalDate.now().getMonthValue() +
+                        "/"+LocalDate.now().getYear() + "\n");
+                fw.write(":context:" + "\n");
+                fw.write(":project:" + "\n");
                 fw.close();
             } catch (IOException e) {
                 e.printStackTrace();
