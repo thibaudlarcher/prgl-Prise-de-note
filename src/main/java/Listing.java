@@ -17,14 +17,14 @@ public class Listing implements Command {
         while ((line = reader.readLine()) != null) {
             output.append("|    "+line + "\n");
         }
-        System.out.println("\033[0;34m"+"target/");
+        System.out.println("\033[0;34m"+paths);
         System.out.println(output+"\033[0m");
     }
 
     @Override
     public void command(String str) {
         if (str.equals("")) {
-            String[] command = {"ls","*.adoc","target"};
+            String[] command = {"ls","*.adoc",paths};
             Process process = null;
             try {
                 process = Runtime.getRuntime().exec(command);
@@ -32,7 +32,7 @@ public class Listing implements Command {
                 e.printStackTrace();
             }
             try {
-                affichageList(process,"target");
+                affichageList(process,paths);
             } catch (IOException e) {
                 e.printStackTrace();
             }

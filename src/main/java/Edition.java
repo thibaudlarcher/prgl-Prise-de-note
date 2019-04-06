@@ -14,7 +14,8 @@ public class Edition implements Command{
         }else{
             str2 = str;
         }
-        File f = new File(str2+".adoc");
+        System.out.println(paths);
+        File f = new File(paths+str2+".adoc");
         if(!(f.exists())) {
             try {
                 FileWriter fw = new FileWriter(f, true);
@@ -45,14 +46,16 @@ public class Edition implements Command{
 
         if(str.equals("")){
             try {
-                String[] command = {programme,"NewFile.adoc"};
+                String p = paths + "NewFile.adoc";
+                String[] command = {programme,p };
                 Runtime.getRuntime().exec(command);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }else{
             try {
-                String[] command = {programme,str + ".adoc"};
+                String p = paths + str + ".adoc";
+                String[] command = {programme,p};
                 Runtime.getRuntime().exec(command);
             } catch (IOException e) {
                 e.printStackTrace();

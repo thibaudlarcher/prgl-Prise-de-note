@@ -4,7 +4,6 @@ import java.io.IOException;
 
 public class PropertiesCreator {
     public PropertiesCreator() {
-
     }
 
     public void createPropertiesFile(){
@@ -16,10 +15,12 @@ public class PropertiesCreator {
                     System.out.println("test");
                     fw.write("notepad\n");
                 } else if (OSRecognizer.isMac()) {
+                    System.out.println(System.getProperty("user.dir"));
                     fw.write("/Applications/TextEdit.app/Contents/MacOS/TextEdit\n");
                 } else {
                     fw.write("notepad\n");
                 }
+                fw.write(System.getProperty("user.dir")+"/\n");
                 fw.close();
             } catch (IOException e) {
                 e.printStackTrace();
