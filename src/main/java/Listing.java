@@ -12,20 +12,6 @@ public class Listing implements Command {
         }
     }
 
-    private void affichageList(Process process) throws IOException {
-        StringBuilder output = new StringBuilder();
-        BufferedReader reader = new BufferedReader(
-                new InputStreamReader(process.getInputStream()));
-        String line;
-        while ((line = reader.readLine()) != null) {
-            output.append("|    ");
-            output.append(line);
-            output.append("\n");
-        }
-        System.out.println("\033[0;34m");
-        System.out.println(output+"\033[0m");
-    }
-
     @Override
     public void command(String str) {
         StringBuilder output = new StringBuilder();
@@ -36,7 +22,7 @@ public class Listing implements Command {
         File f = new File(paths);
         for(File f2 : f.listFiles()){
             output.append("|    ");
-            output.append(f2.getName());
+            output.append(f2.getName(), 0, f2.getName().length()-5);
             output.append("\n");
         }
         System.out.println(output);
