@@ -57,14 +57,12 @@ public class PropertiesCreator {
         File f = new File("notes.properties");
         if ((f.exists())) {
             try {
+                String programme;
+                BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(f)));
+                programme = br.readLine();
+                br.close();
                 FileWriter fw = new FileWriter(f, false);
-                if (OSRecognizer.isWindows()) {
-                    fw.write("notepad\n");
-                } else if (OSRecognizer.isMac()) {
-                    fw.write("code\n");
-                } else {
-                    fw.write("notepad\n");
-                }
+                fw.write(programme+"\n");
                 fw.write(paths);
                 if (OSRecognizer.isWindows()) {
                     fw.write("\\notes\\\n");

@@ -15,7 +15,7 @@ public class InterpreteurConsole implements Command{
         System.out.println("3) Supprimer une note (saisir delete ou d)");
         System.out.println("4) Voir la note (saisir view ou v)");
         System.out.println("5) Rechercher une note (saisir search ou s)");
-        System.out.println("6) Changer dossier de sauvegarde (saisir paths ou p)");
+        System.out.println("6) Changer dossier de sauvegarde (saisir path ou p)");
     }
 
     @Override

@@ -12,7 +12,7 @@ public class PropertiesOpener implements Command {
             try {
                 BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(f)));
                 programme = br.readLine();
-
+                br.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }

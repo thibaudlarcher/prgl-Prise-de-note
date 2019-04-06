@@ -51,7 +51,7 @@ public class InterpreteurFenetre implements Command{
         helpTxtPanel.add(jtxtpane("3) Supprimer une note (saisir delete ou d)",new Color(0,153,0),0,220));
         helpTxtPanel.add(jtxtpane("4) Voir la note (saisir view ou v)",new Color(0,153,0),0,242));
         helpTxtPanel.add(jtxtpane("5) Rechercher une note (saisir search ou s)",new Color(0,153,0),0,264));
-        helpTxtPanel.add(jtxtpane("6) Changer dossier de sauvegarde (saisir paths ou p)",new Color(0,153,0),0,264));
+        helpTxtPanel.add(jtxtpane("6) Changer dossier de sauvegarde (saisir path ou p)",new Color(0,153,0),0,264));
         return helpTxtPanel ;
     }
 
