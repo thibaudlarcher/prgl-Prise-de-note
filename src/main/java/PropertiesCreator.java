@@ -3,11 +3,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class PropertiesCreator {
-    public PropertiesCreator() {
+    private PropertiesCreator() {
 
     }
 
-    public void createPropertiesFile(){
+    public static void createPropertiesFile(){
         File f = new File("notes.properties");
         if(!(f.exists())) {
             try {

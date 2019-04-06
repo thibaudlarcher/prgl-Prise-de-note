@@ -1,7 +1,5 @@
 import java.util.Scanner;
 
-import static java.lang.System.exit;
-
 public class InterpreteurConsole implements Command{
     public InterpreteurConsole() {
         System.out.println("                    _                _                    _");
@@ -24,6 +22,7 @@ public class InterpreteurConsole implements Command{
         Scanner sc = new Scanner(System.in);
         String st = sc.nextLine();
         while (true) {
+            InterpreteurGlobal.execute(st.split(" "));
             st = sc.nextLine();
         }
     }

@@ -87,8 +87,7 @@ public class InterpreteurFenetre implements Command{
             public void keyReleased(KeyEvent e) {
                 if(e.getKeyCode() == KeyEvent.VK_ENTER){
                     String commande = jTextField.getText();
-                    System.out.println(commande);
-                    TakeAction(commande);
+                    InterpreteurGlobal.execute(commande.split(" "));
                     jTextField.setText("");
                 }
             }
@@ -105,48 +104,6 @@ public class InterpreteurFenetre implements Command{
         this.setListener(J);
         this.interpreteur.setVisible(true);
 
-    }
-
-    private void TakeAction(String str) {
-        if(str.length() >= 3 && str.substring(0,4).equals("exit")) {
-            exit(0);
-        }else if(str.length() >= 4 && str.substring(0,4).equals("edit")){
-            if(str.length() == 4 || str.length() == 5)
-            {
-                new Edition().command("");
-            }else{
-                new Edition().command(str.substring(5));
-            }
-        }else if(str.length() >= 1 && str.substring(0,1).equals("e")){
-            if(str.length() == 1 || str.length() == 2)
-            {
-                new Edition().command("");
-            }else{
-                new Edition().command(str.substring(2));
-            }
-        } else if(str.length() >= 2 && str.substring(0,2).equals("ls")){
-            if(str.length() == 2 || str.length() == 3)
-            {
-                new Listing().command("");
-            }else{
-                new Listing().command(str.substring(3));
-            }
-        } else if(str.length() >= 4 && str.substring(0,2).equals("list")){
-            if(str.length() == 4 || str.length() == 5)
-            {
-                new Listing().command("");
-            } else{
-                new Listing().command(str.substring(5));
-            }
-        } else if (str.length() >= 6 && str.substring(0, 6).equals("Delete")) {
-            if (str.length() >= 7) {
-                new Delete().command(str.substring(7));
-            }
-        } else if (str.length() >= 1 && str.substring(0, 1).equals("d")) {
-            if (str.length() >= 2) {
-                new Delete().command(str.substring(2));
-            }
-        }
     }
 
     @Override

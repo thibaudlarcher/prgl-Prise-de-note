@@ -2,7 +2,7 @@ import java.io.*;
 import java.time.LocalDate;
 
 public class Edition implements Command{
-    static String programme = null;
+    private static String programme = null;
     private String paths;
     public Edition(){
     }
