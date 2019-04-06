@@ -28,9 +28,6 @@ public class Delete implements Command {
 
     @Override
     public boolean isEqual (String str){
-        if (str.equals("delete") || str.equals("d")) {
-            return true;
-        }
-        return false;
+        return str.equals("delete") || str.equals("d");
     }
 }

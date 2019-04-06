@@ -68,8 +68,6 @@ public class InterpreteurConsole implements Command{
 
     @Override
     public boolean isEqual(String str) {
-        if(str.equals("c") || str.equals("console"))
-            return true;
-        return false;
+        return str.equals("c") || str.equals("console");
     }
 }

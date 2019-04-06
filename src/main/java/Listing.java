@@ -9,13 +9,15 @@ public class Listing implements Command {
         this.paths = paths;
     }
 
-    private void affichageList(Process process,String str) throws IOException {
+    private void affichageList(Process process) throws IOException {
         StringBuilder output = new StringBuilder();
         BufferedReader reader = new BufferedReader(
                 new InputStreamReader(process.getInputStream()));
         String line;
         while ((line = reader.readLine()) != null) {
-            output.append("|    "+line + "\n");
+            output.append("|    ");
+            output.append(line);
+            output.append("\n");
         }
         System.out.println("\033[0;34m"+"target/");
         System.out.println(output+"\033[0m");
@@ -25,27 +27,19 @@ public class Listing implements Command {
     public void command(String str) {
         if (str.equals("")) {
             String[] command = {"ls","*.adoc","target"};
-            Process process = null;
+            Process process;
             try {
                 process = Runtime.getRuntime().exec(command);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-                affichageList(process,"target");
+                affichageList(process);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }else{
             String[] command = {"ls","*.adoc", str};
-            Process process = null;
+            Process process;
             try {
                 process = Runtime.getRuntime().exec(command);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            try {
-                affichageList(process,str);
+                affichageList(process);
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -54,9 +48,7 @@ public class Listing implements Command {
 
     @Override
     public boolean isEqual(String str) {
-        if(str.equals("ls") || str.equals("list"))
-            return true;
-        return false;
+        return str.equals("ls") || str.equals("list");
     }
 }
 

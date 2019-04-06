@@ -86,10 +86,10 @@ public class InterpreteurFenetre implements Command{
 
             @Override
             public void keyReleased(KeyEvent e) {
-                if(e.getKeyCode() == e.VK_ENTER){
+                if(e.getKeyCode() == KeyEvent.VK_ENTER){
                     String commande = jTextField.getText();
                     System.out.println(commande);
-                    command(commande);
+                    TakeAction(commande);
                     jTextField.setText("");
                 }
             }
@@ -101,15 +101,14 @@ public class InterpreteurFenetre implements Command{
 
     }
 
-    public void Afficher(){
+    private void Afficher(){
         JPanel J = this.setHelpText();
         this.setListener(J);
         this.interpreteur.setVisible(true);
 
     }
 
-    @Override
-    public void command(String str) {
+    private void TakeAction(String str) {
         if(str.length() >= 3 && str.substring(0,4).equals("exit")) {
             exit(0);
         }else if(str.length() >= 4 && str.substring(0,4).equals("edit")){
@@ -152,9 +151,14 @@ public class InterpreteurFenetre implements Command{
     }
 
     @Override
+    public void command(String str) {
+        this.Afficher();
+    }
+
+
+
+    @Override
     public boolean isEqual(String str) {
-        if(str.equals("f") || str.equals("fenetre"))
-            return true;
-        return false;
+        return str.equals("f") || str.equals("fenetre");
     }
 }

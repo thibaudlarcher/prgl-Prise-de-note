@@ -27,7 +27,7 @@ public class Edit {
 
             }else{ C = new InterpreteurFenetre("/target");
                 if(C.isEqual(args[0])) {
-                    ((InterpreteurFenetre) C).Afficher();
+                    C.command("");
                 }else { C = new InterpreteurConsole("/target");
                     if (C.isEqual(args[0])) {
                             C.command(args[0]);

@@ -41,8 +41,6 @@ public class Edition implements Command{
                 BufferedReader br = new BufferedReader(new InputStreamReader(new FileInputStream(f)));
                 programme = br.readLine();
 
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -69,9 +67,6 @@ public class Edition implements Command{
 
     @Override
     public boolean isEqual(String str) {
-        if(str.equals("e") || str.equals("edit")){
-            return true;
-        }
-        return false;
+        return str.equals("e") || str.equals("edit");
     }
 }
