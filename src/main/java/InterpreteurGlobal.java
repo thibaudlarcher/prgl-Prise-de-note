@@ -45,6 +45,7 @@ public class InterpreteurGlobal {
                 break;
             default:
                 C = new NonCommand();
+                command = args[0] + " " + command;
                 break;
         }
         C.command(command);
