@@ -1,7 +1,14 @@
 import java.util.Scanner;
 
 public class InterpreteurConsole implements Command{
-    public InterpreteurConsole() {
+
+    private static InterpreteurConsole ourInstance = new InterpreteurConsole();
+
+    public static InterpreteurConsole getInstance() {
+        return ourInstance;
+    }
+
+    private InterpreteurConsole() {
         System.out.println("                    _                _                    _");
         System.out.println("         _ __  _ __(_)___  ___    __| | ___   _ __   ___ | |_ ___");
         System.out.println("        | '_ \\| '__| / __|/ _ \\  / _` |/ _ \\ | '_ \\ / _ \\| __/ _ \\");

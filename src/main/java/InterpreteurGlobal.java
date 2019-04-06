@@ -33,11 +33,11 @@ public class InterpreteurGlobal {
                 break;
             case "f":
             case "fenetre":
-                C = new InterpreteurFenetre();
+                C = InterpreteurFenetre.getInstance();
                 break;
             case "c":
             case "console":
-                C = new InterpreteurConsole();
+                C = InterpreteurConsole.getInstance();
                 break;
             case "pr":
             case "property":

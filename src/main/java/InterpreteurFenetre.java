@@ -5,9 +5,15 @@ import java.awt.event.KeyListener;
 
 public class InterpreteurFenetre implements Command{
 
+    private static InterpreteurFenetre ourInstance = new InterpreteurFenetre();
+
+    public static InterpreteurFenetre getInstance() {
+        return ourInstance;
+    }
+
     private JFrame interpreteur;
 
-    public InterpreteurFenetre() {
+    private InterpreteurFenetre() {
         this.interpreteur = new JFrame("Interpréteur Notes");
         this.interpreteur.setSize(700,400);
         this.interpreteur.setLayout(null);
@@ -15,6 +21,8 @@ public class InterpreteurFenetre implements Command{
         this.interpreteur.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.interpreteur.setLocationRelativeTo(null);
         this.interpreteur.setBackground(Color.black);
+        JPanel J = this.setHelpText();
+        this.setListener(J);
     }
 
     private JTextPane jtxtpane(String s, Color C, int y){
@@ -100,8 +108,6 @@ public class InterpreteurFenetre implements Command{
     }
 
     private void Afficher(){
-        JPanel J = this.setHelpText();
-        this.setListener(J);
         this.interpreteur.setVisible(true);
 
     }
