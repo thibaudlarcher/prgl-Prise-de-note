@@ -20,6 +20,10 @@ public class PropertiesCreator {
                 } else {
                     fw.write("notepad\n");
                 }
+                fw.write("\n");
+                fw.write("\n");
+                fw.write("\n");
+                fw.write("Tout changement sera répercuté après un redémarage de l'Application.");
                 fw.close();
             } catch (IOException e) {
                 e.printStackTrace();

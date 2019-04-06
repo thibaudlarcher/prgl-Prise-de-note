@@ -38,6 +38,11 @@ public class InterpreteurGlobal {
             case "console":
                 C = new InterpreteurConsole();
                 break;
+            case "p":
+            case "property":
+            case "properties":
+                C = new PropertiesOpener();
+                break;
             default:
                 C = new NonCommand();
                 break;
