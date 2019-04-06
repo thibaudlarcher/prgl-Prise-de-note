@@ -11,8 +11,8 @@ import static java.lang.System.exit;
 public class pathsChooser extends JPanel implements ActionListener,Command {
 
     private String paths;
-    JFileChooser chooser;
-    String choosertitle;
+    private JFileChooser chooser;
+    private String choosertitle;
     public pathsChooser(){
     }
     public void actionPerformed(ActionEvent e) {
@@ -20,6 +20,37 @@ public class pathsChooser extends JPanel implements ActionListener,Command {
     }
     public Dimension getPreferredSize(){
         return new Dimension(200, 200);
+    }
+
+    public void closeWindow(){
+        JFrame J = new JFrame();
+        J.setSize(300,200);
+        J.setLayout(null);
+        J.setResizable(false);
+        J.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        J.setLocationRelativeTo(null);
+
+        JPanel JP = new JPanel();
+        JP.setLocation(0,0);
+        JP.setBounds(0,0,300,200);
+        JP.setLayout(null);
+
+        JTextPane textPane = new JTextPane();
+        textPane.setEditable(false);
+        textPane.setBounds(0,0,300,100);
+        Font f = new Font("Consolas",Font.BOLD,16);
+        textPane.setForeground(Color.black);
+        textPane.setFont(f);
+        textPane.setText("L'application doit être fermé pour appliquer les modifications.");
+        JP.add(textPane);
+
+        JButton JB = new JButton("OK");
+        JB.setBounds(100,120,100,25);
+        JB.addActionListener(e -> exit(0));
+        JP.add(JB);
+
+        J.add(JP);
+        J.setVisible(true);
     }
 
     @Override
@@ -46,9 +77,6 @@ public class pathsChooser extends JPanel implements ActionListener,Command {
             frame.getContentPane().add(this, "Center");
             frame.setSize(this.getPreferredSize());
             frame.setVisible(false);
-    }
-
-    public String getPaths() {
-        return paths;
+            this.closeWindow();
     }
 }

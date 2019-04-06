@@ -14,8 +14,6 @@ public class PropertiesRead {
         File f = new File("notes.properties");
         if ((f.exists())) {
             BufferedReader br;
-            String motLu;
-
             try{
                 br = new BufferedReader(new InputStreamReader(new FileInputStream("notes.properties"),"UTF-8"));
                 for(int i = 0;i<2;i++){
