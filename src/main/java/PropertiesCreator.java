@@ -15,7 +15,7 @@ public class PropertiesCreator {
                     fw.write("notepad\n");
                 } else if (OSRecognizer.isMac()) {
                     System.out.println(System.getProperty("user.dir"));
-                    fw.write("/Applications/TextEdit.app/Contents/MacOS/TextEdit\n");
+                    fw.write("code\n");
                 } else {
                     fw.write("notepad\n");
                 }
@@ -34,7 +34,7 @@ public class PropertiesCreator {
                 if (OSRecognizer.isWindows()) {
                     fw.write("notepad\n");
                 } else if (OSRecognizer.isMac()) {
-                    fw.write("/Applications/TextEdit.app/Contents/MacOS/TextEdit\n");
+                    fw.write("code\n");
                 } else {
                     fw.write("notepad\n");
                 }
