@@ -1,10 +1,13 @@
+import java.awt.*;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 public class View implements Command {
     private static String paths;
 
     public View(){
-        if(paths == null){
+        if(paths == null) {
             paths =  PropertiesRead.getPaths();
         }
     }
@@ -12,20 +15,19 @@ public class View implements Command {
     @Override
     public void command(String str) {
         if (str.length() >= 5 && str.substring(str.length() - 5).equals(".adoc")) {
-            String[] command = {"open",paths + str};
+            String file = paths + str;
             try {
-                Runtime.getRuntime().exec(command);
-            } catch (IOException e) {
+                Desktop.getDesktop().browse(new URI("file:///" + file));
+            } catch (IOException | URISyntaxException e) {
                 e.printStackTrace();
             }
         } else {
-            String[] command = {"open",paths + str + ".adoc"};
+            String file = paths + str + ".adoc";
             try {
-                Runtime.getRuntime().exec(command);
-            } catch (IOException e) {
+                Desktop.getDesktop().browse(new URI("file:///" + file));
+            } catch (IOException | URISyntaxException e) {
                 e.printStackTrace();
             }
         }
     }
-
 }

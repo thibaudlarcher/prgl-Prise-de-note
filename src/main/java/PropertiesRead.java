@@ -19,7 +19,7 @@ public class PropertiesRead {
                 for(int i = 0;i<2;i++){
                     if(i == 0)
                         application = br.readLine();
-                    if(i == 1)
+                    if (i == 1)
                         paths = br.readLine();
                 }
                 br.close();
@@ -36,4 +36,5 @@ public class PropertiesRead {
     public static String getApplication() {
         return application;
     }
+
 }

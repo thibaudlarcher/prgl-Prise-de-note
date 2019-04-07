@@ -41,7 +41,7 @@ public class pathsChooser extends JPanel implements ActionListener,Command {
         Font f = new Font("Consolas",Font.BOLD,16);
         textPane.setForeground(Color.black);
         textPane.setFont(f);
-        textPane.setText("L'application doit être fermé pour appliquer les modifications.");
+        textPane.setText("L'application doit être fermée pour appliquer les modifications.");
         JP.add(textPane);
 
         JButton JB = new JButton("OK");
@@ -67,7 +67,7 @@ public class pathsChooser extends JPanel implements ActionListener,Command {
                 this.paths = String.valueOf(chooser.getSelectedFile());
                 PropertiesCreator.updatePropertiesFile(paths);
             } else {
-                System.out.println("Pas de dossier choisit ");
+                System.out.println("Pas de dossier choisi ");
             }
             frame.addWindowListener(new WindowAdapter() {
                 public void windowClosing(WindowEvent e) {
