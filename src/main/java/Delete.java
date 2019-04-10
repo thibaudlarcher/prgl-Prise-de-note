@@ -11,6 +11,9 @@ public class Delete implements Command {
 
     @Override
     public void command(String str) {
+        Note note = new Note.NoteBuilder(str).build();
+        index.deleteNote(note);
+
         if (str.length() >= 5 && str.substring(str.length() - 5).equals(".adoc")) {
             String[] command = {"rm", path + str};
             try {
