@@ -1,6 +1,5 @@
 import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class IndexCreator {
     private ArrayList<Note> ListNote;
@@ -43,6 +42,7 @@ public class IndexCreator {
 
     public void deleteNote(Note note) {
         File f = new File("index.adoc");
+        this.ListNote = new ArrayList<>();
 
         if (f.exists()) {
             BufferedReader br;
@@ -55,7 +55,7 @@ public class IndexCreator {
                 String line = br.readLine();
                 while (line != null) {
                     String titre = line.substring(2);
-                    if (!(titre.equals(note.getTitre()))) {
+                    if (!(titre.equalsIgnoreCase(note.getTitre()))) {
                         ListNote.add(new Note.NoteBuilder(titre).build());
                     }
                     line = br.readLine();
