@@ -1,4 +1,5 @@
 import java.time.LocalDate;
+import java.util.Comparator;
 
 public class Note {
     private String titre;
@@ -58,4 +59,26 @@ public class Note {
     public int getDate() {
         return this.date;
     }
+
+    public static Comparator<Note> TitreComparator = new Comparator<Note>() {
+
+        @Override
+        public int compare(Note o1, Note o2) {
+            return o1.getTitre().toUpperCase().compareTo(o2.getTitre().toUpperCase());
+        }
+    };
+
+    public static Comparator<Note> ContextComparator = new Comparator<Note>() {
+        @Override
+        public int compare(Note o1, Note o2) {
+            return o1.getContext().toUpperCase().compareTo(o2.getContext().toUpperCase());
+        }
+    };
+
+    public static Comparator<Note> ProjectComparator = new Comparator<Note>() {
+        @Override
+        public int compare(Note o1, Note o2) {
+            return o1.getProject().toUpperCase().compareTo(o2.getProject().toUpperCase());
+        }
+    };
 }

@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class IndexCreator {
     private ArrayList<Note> ListNote;
@@ -25,18 +26,41 @@ public class IndexCreator {
         }
     }
 
+    public void readIndex() {
+        this.ListNote = new ArrayList<>();
+        File f = new File("index.adoc");
+
+        if (f.exists()) {
+            BufferedReader br;
+            try {
+                br = new BufferedReader(new InputStreamReader(new FileInputStream("index.adoc"),"UTF-8"));
+                for (int i = 0; i < 3; i++) {
+                    br.readLine();
+                }
+
+                String line = br.readLine();
+                while (line != null) {
+                    String titre = line.substring(2);
+                    ListNote.add(new Note.NoteBuilder(titre).build());
+                    line = br.readLine();
+                }
+                br.close();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+    }
+
     public void addNote(Note note) {
         File f = new File("index.adoc");
 
         if (f.exists()) {
-            try {
-                FileWriter fw = new FileWriter(f, true);
-                fw.write("* " + note.getTitre());
-                fw.write("\n");
-                fw.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            readIndex();
+            ListNote.add(note);
+            Collections.sort(ListNote, Note.TitreComparator);
+            writeIndex();
         }
     }
 
