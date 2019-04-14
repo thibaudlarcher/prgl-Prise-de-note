@@ -1,10 +1,18 @@
 import static java.lang.System.exit;
 
+/**
+ * Permet d'interpréter les lignes de commandes
+ */
 public class InterpreteurGlobal {
-    private InterpreteurGlobal() { }
+    public static Command C;
+    protected InterpreteurGlobal() { }
 
+    /**
+     * Permet d'éxécuter les fonctions suivant la ligne de commande solicité
+     * @param args ligne de commande
+     */
     public static void execute(String[] args){
-        Command C;
+        //Command C;
         StringBuilder sb = new StringBuilder();
         if(args.length != 1){
             sb.append(args[1]);
@@ -57,5 +65,9 @@ public class InterpreteurGlobal {
                 break;
         }
         C.command(command);
+    }
+
+    public Command getCommand(){
+        return C;
     }
 }

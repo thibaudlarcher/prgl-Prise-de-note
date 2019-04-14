@@ -1,5 +1,8 @@
 import java.util.Scanner;
 
+/**
+ * Permet de faire un affichage lors de l'ouverture de l'application sans ligne de commande
+ */
 public class InterpreteurConsole implements Command{
     public InterpreteurConsole() {
         System.out.println("                    _                _                    _");
@@ -18,6 +21,10 @@ public class InterpreteurConsole implements Command{
         System.out.println("6) Changer dossier de sauvegarde (saisir path ou p)");
     }
 
+    /**
+     * Permet de récupérer la ligne de commande
+     * @param str La ligne de commande
+     */
     @Override
     public void command(String str) {
         Scanner sc = new Scanner(System.in);

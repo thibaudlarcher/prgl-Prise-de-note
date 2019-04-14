@@ -1,21 +1,36 @@
 import java.time.LocalDate;
 
+/**
+ * calss de la création des notes
+ */
 public class Note {
     private String titre;
     private String context;
     private String project;
     private int date;
 
+    /**
+     * Patter Builder de la noteBuilder
+     */
     public static class NoteBuilder {
         private String titre;
         private String context = "context";
         private String project = "project";
         private int date = LocalDate.now().getMonthValue();
 
+        /**
+         * Constructeur du NoteBuilder
+         * @param titre la titre de la note
+         */
         public NoteBuilder(String titre) {
             this.titre = titre;
         }
 
+        /**
+         * Le contexte de la Note
+         * @param context le contexte
+         * @return le Builder
+         */
         public NoteBuilder setContext(String context) {
             this.context = context;
             return this;

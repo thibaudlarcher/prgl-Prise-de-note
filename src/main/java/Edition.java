@@ -4,6 +4,10 @@ import java.time.LocalDate;
 public class Edition implements Command{
     private static String programme = null;
     private static String paths;
+
+    /**
+     * Permet de récupérer le programme et le path propre a chaque ordinateur
+     */
     public Edition(){
         if(paths == null){
             paths = PropertiesRead.getPaths();
@@ -13,6 +17,10 @@ public class Edition implements Command{
         }
     }
 
+    /**
+     * Permet de remplir le fichier .adoc avec la base du asciidoctor
+     * @param str Le nom du fichier
+     */
     private void creationFile(String str){
         String str2;
         if(str.equals("")){
@@ -41,6 +49,18 @@ public class Edition implements Command{
         }
     }
 
+    /**
+     * Permet de récupérer le chemin physique du dossier note
+     * @return le chemin du dossier note
+     */
+    public String getPath(){
+        return paths;
+    }
+
+    /**
+     * Permet la création de fichier, elle va permet de créer un nouveau fichier sans nom ou avec un nom
+     * @param str la commande de la création de fichier par "e" ou "edit" suivi ou non du nom de fichier
+     */
     @Override
     public void command(String str){
 
@@ -48,6 +68,7 @@ public class Edition implements Command{
 
         if(str.equals("")){
             try {
+
                 String p = paths + "NewFile.adoc";
                 String[] command = {programme,p };
                 Runtime.getRuntime().exec(command);
