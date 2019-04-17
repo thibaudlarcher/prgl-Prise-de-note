@@ -16,6 +16,9 @@ public class View implements Command {
     public void command(String str) {
         if (str.length() >= 5 && str.substring(str.length() - 5).equals(".adoc")) {
             String file = paths + str;
+            if (file.equalsIgnoreCase(paths + "index.adoc")) {
+                index.updateIndex();
+            }
             file.replaceAll(" ", "%20");
             File f = new File(file);
             try {
@@ -25,6 +28,9 @@ public class View implements Command {
             }
         } else {
             String file = paths + str + ".adoc";
+            if (file.equalsIgnoreCase(paths + "index.adoc")) {
+                index.updateIndex();
+            }
             file.replaceAll(" ", "%20");
             File f = new File(file);
             try {

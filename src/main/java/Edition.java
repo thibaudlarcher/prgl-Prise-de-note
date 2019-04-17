@@ -31,7 +31,7 @@ public class Edition implements Command{
         File f = new File(paths+str2+".adoc");
         if(!(f.exists())) {
             try {
-                Note note = new Note.NoteBuilder(str2).setDate(LocalDate.now().getMonthValue()).build();
+                Note note = new Note.NoteBuilder(str2).build();
                 index.addNote(note);
 
                 FileWriter fw = new FileWriter(f, true);
@@ -47,6 +47,7 @@ public class Edition implements Command{
                 e.printStackTrace();
             }
         }
+        index.updateIndex();
     }
 
     /**
