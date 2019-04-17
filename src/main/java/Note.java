@@ -81,4 +81,11 @@ public class Note {
             return o1.getProject().toUpperCase().compareTo(o2.getProject().toUpperCase());
         }
     };
+
+    public static Comparator<Note> DateComparator = new Comparator<Note>() {
+        @Override
+        public int compare(Note o1, Note o2) {
+            return o1.getDate() - o2.getDate();
+        }
+    };
 }

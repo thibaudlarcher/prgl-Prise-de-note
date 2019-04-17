@@ -17,6 +17,16 @@ public class IndexCreator {
                 FileWriter fw = new FileWriter(f, true);
                 fw.write("= Liste des notes\n");
                 fw.write("\n");
+                fw.write("Tri des notes par ordre alphabétique :\n");
+                fw.write("[square]");
+                fw.write("\n");
+                fw.write("Tri des notes par contexte :\n");
+                fw.write("[square]");
+                fw.write("\n");
+                fw.write("Tri des notes par projet :\n");
+                fw.write("[square]");
+                fw.write("\n");
+                fw.write("Tri des notes par date de création :\n");
                 fw.write("[square]");
                 fw.write("\n");
                 fw.close();
@@ -34,14 +44,20 @@ public class IndexCreator {
             BufferedReader br;
             try {
                 br = new BufferedReader(new InputStreamReader(new FileInputStream("index.adoc"),"UTF-8"));
-                for (int i = 0; i < 3; i++) {
-                    br.readLine();
-                }
-
                 String line = br.readLine();
                 while (line != null) {
-                    String titre = line.substring(2);
-                    ListNote.add(new Note.NoteBuilder(titre).build());
+                    if (line.startsWith("*")) {
+                        String titre = line.substring(2);
+                        if (ListNote.isEmpty()) {
+                            ListNote.add(new Note.NoteBuilder(titre).build());
+                        } else {
+                            for (int i = 0; i < ListNote.size(); i++) {
+                                if (ListNote.get(i).getTitre().equalsIgnoreCase(titre)) {
+                                    ListNote.add(new Note.NoteBuilder(titre).build());
+                                }
+                            }
+                        }
+                    }
                     line = br.readLine();
                 }
                 br.close();
@@ -50,7 +66,6 @@ public class IndexCreator {
                 e.printStackTrace();
             }
         }
-
     }
 
     public void addNote(Note note) {
@@ -59,37 +74,19 @@ public class IndexCreator {
         if (f.exists()) {
             readIndex();
             ListNote.add(note);
-            Collections.sort(ListNote, Note.TitreComparator);
             writeIndex();
         }
     }
 
     public void deleteNote(Note note) {
         File f = new File("index.adoc");
-        this.ListNote = new ArrayList<>();
-
         if (f.exists()) {
-            BufferedReader br;
-            try {
-                br = new BufferedReader(new InputStreamReader(new FileInputStream("index.adoc"),"UTF-8"));
-
-                for (int i = 0; i < 3; i++) {
-                    br.readLine();
+            for (int i = 0; i < ListNote.size(); i++) {
+                if (ListNote.get(i).getTitre().equalsIgnoreCase(note.getTitre())) {
+                    ListNote.remove(ListNote.get(i));
                 }
-                String line = br.readLine();
-                while (line != null) {
-                    String titre = line.substring(2);
-                    if (!(titre.equalsIgnoreCase(note.getTitre()))) {
-                        ListNote.add(new Note.NoteBuilder(titre).build());
-                    }
-                    line = br.readLine();
-                }
-                br.close();
-            } catch (IOException e) {
-                e.printStackTrace();
             }
         }
-
         writeIndex();
     }
 
@@ -101,12 +98,41 @@ public class IndexCreator {
                 FileWriter fw = new FileWriter(f, false);
                 fw.write("= Liste des notes\n");
                 fw.write("\n");
+                fw.write("Tri des notes par ordre alphabétique :\n");
                 fw.write("[square]");
                 fw.write("\n");
+                Collections.sort(ListNote, Note.TitreComparator);
                 for (Note note : ListNote) {
                     fw.write("* " + note.getTitre());
                     fw.write("\n");
                 }
+//                fw.write("\n");
+//                fw.write("Tri des notes par contexte :\n");
+//                fw.write("[square]");
+//                fw.write("\n");
+//                Collections.sort(ListNote, Note.ContextComparator);
+//                for (Note note : ListNote) {
+//                    fw.write("* " + note.getTitre());
+//                    fw.write("\n");
+//                }
+//                fw.write("\n");
+//                fw.write("Tri des notes par projet :\n");
+//                fw.write("[square]");
+//                fw.write("\n");
+//                Collections.sort(ListNote, Note.ProjectComparator);
+//                for (Note note : ListNote) {
+//                    fw.write("* " + note.getTitre());
+//                    fw.write("\n");
+//                }
+//                fw.write("\n");
+//                fw.write("Tri des notes par date de création :\n");
+//                fw.write("[square]");
+//                fw.write("\n");
+//                Collections.sort(ListNote, Note.DateComparator);
+//                for (Note note : ListNote) {
+//                    fw.write("* " + note.getTitre());
+//                    fw.write("\n");
+//                }
                 fw.close();
             } catch (IOException e) {
                 e.printStackTrace();
