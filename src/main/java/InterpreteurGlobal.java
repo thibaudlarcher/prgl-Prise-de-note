@@ -53,7 +53,7 @@ public class InterpreteurGlobal {
                 break;
             case "p":
             case "path":
-                C = new pathsChooser();
+                C = new PathsChooser();
                 break;
             case "v":
             case "view":

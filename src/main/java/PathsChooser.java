@@ -8,12 +8,12 @@ import java.io.File;
 
 import static java.lang.System.exit;
 
-public class pathsChooser extends JPanel implements ActionListener,Command {
+public class PathsChooser extends JPanel implements ActionListener,Command {
 
     private String paths;
     private JFileChooser chooser;
     private String choosertitle;
-    public pathsChooser(){
+    public PathsChooser(){
     }
     public void actionPerformed(ActionEvent e) {
 
