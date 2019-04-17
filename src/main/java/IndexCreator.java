@@ -10,7 +10,7 @@ public class IndexCreator {
     }
 
     public static void createIndexFile() {
-        File f = new File("index.adoc");
+        File f = new File(PropertiesRead.getPaths() + "index.adoc");
 
         if (!(f.exists())) {
             try {
@@ -27,7 +27,7 @@ public class IndexCreator {
     }
 
     public void addNote(Note note) {
-        File f = new File("index.adoc");
+        File f = new File(PropertiesRead.getPaths() + "index.adoc");
 
         if (f.exists()) {
             try {
@@ -42,12 +42,12 @@ public class IndexCreator {
     }
 
     public void deleteNote(Note note) {
-        File f = new File("index.adoc");
+        File f = new File(PropertiesRead.getPaths() + "index.adoc");
 
         if (f.exists()) {
             BufferedReader br;
             try {
-                br = new BufferedReader(new InputStreamReader(new FileInputStream("index.adoc"),"UTF-8"));
+                br = new BufferedReader(new InputStreamReader(new FileInputStream(PropertiesRead.getPaths() + "index.adoc"),"UTF-8"));
 
                 for (int i = 0; i < 3; i++) {
                     br.readLine();
@@ -70,7 +70,7 @@ public class IndexCreator {
     }
 
     private void writeIndex() {
-        File f = new File("index.adoc");
+        File f = new File(PropertiesRead.getPaths() + "index.adoc");
 
         if (f.exists()) {
             try {

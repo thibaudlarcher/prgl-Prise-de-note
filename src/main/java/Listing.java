@@ -22,11 +22,11 @@ public class Listing implements Command {
         StringBuilder output = new StringBuilder();
 
         System.out.println("\033[0;34m");
-        output.append(paths);
+        output.append("Liste des Notes");
         output.append(" :\n");
         File f = new File(paths);
         for(File f2 : Objects.requireNonNull(f.listFiles())){
-            output.append("|    ");
+            output.append("|");
             output.append(f2.getName(), 0, f2.getName().length()-5);
             output.append("\n");
         }
