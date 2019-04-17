@@ -1,15 +1,17 @@
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 public class PropertiesCreator {
     private PropertiesCreator() {
     }
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     private static void createDir(){
         File f = new File("notes.properties");
 
         BufferedReader br;
         try {
-            br = new BufferedReader(new InputStreamReader(new FileInputStream(f),"UTF-8"));
+            br = new BufferedReader(new InputStreamReader(new FileInputStream(f), StandardCharsets.UTF_8));
             br.readLine();
             String path = br.readLine();
             File f2 = new File(path);

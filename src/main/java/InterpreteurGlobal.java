@@ -24,6 +24,7 @@ public class InterpreteurGlobal {
         String command = sb.toString();
 
         switch (args[0]) {
+            case "ex":
             case "exit":
                 exit(0);
             case "e":
@@ -40,11 +41,11 @@ public class InterpreteurGlobal {
                 break;
             case "f":
             case "fenetre":
-                C = new InterpreteurFenetre();
+                C = InterpreteurFenetre.getInstance();
                 break;
             case "c":
             case "console":
-                C = new InterpreteurConsole();
+                C = InterpreteurConsole.getInstance();
                 break;
             case "pr":
             case "property":
