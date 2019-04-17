@@ -5,7 +5,7 @@ import static java.lang.System.exit;
  */
 public class InterpreteurGlobal {
     public static Command C;
-    protected InterpreteurGlobal() { }
+    private InterpreteurGlobal() { }
 
     /**
      * Permet d'éxécuter les fonctions suivant la ligne de commande solicité

@@ -1,6 +1,6 @@
-import org.junit.jupiter.api.Test;
-import java.io.File;
+import org.junit.Test;
 import static org.junit.Assert.*;
+import java.io.File;
 
 public class TestDelete {
     @Test
@@ -9,8 +9,7 @@ public class TestDelete {
         PropertiesRead.readPropertiesFile();
         IndexCreator.createIndexFile();
         String e = "delete bonjour";
-        InterpreteurGlobal com = new InterpreteurGlobal();
-        com.execute(e.split(" "));
+        InterpreteurGlobal.execute(e.split(" "));
         Delete del = new Delete();
         File f = new File(del.getPath()+"bonjour.adoc");
         assertFalse(f.exists());
@@ -21,8 +20,7 @@ public class TestDelete {
         PropertiesRead.readPropertiesFile();
         IndexCreator.createIndexFile();
         String e = "d bonjour";
-        InterpreteurGlobal com = new InterpreteurGlobal();
-        com.execute(e.split(" "));
+        InterpreteurGlobal.execute(e.split(" "));
         Delete del = new Delete();
         File f = new File(del.getPath()+"bonjour.adoc");
         assertFalse(f.exists());

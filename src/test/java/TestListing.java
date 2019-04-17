@@ -1,4 +1,4 @@
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class TestListing {
@@ -8,8 +8,7 @@ public class TestListing {
         PropertiesRead.readPropertiesFile();
         IndexCreator.createIndexFile();
         String e = "ls";
-        InterpreteurGlobal com = new InterpreteurGlobal();
-        com.execute(e.split(" "));
+        InterpreteurGlobal.execute(e.split(" "));
         Listing lis = new Listing();
         String temp;
         temp = PropertiesRead.getPaths();
@@ -21,8 +20,7 @@ public class TestListing {
         PropertiesRead.readPropertiesFile();
         IndexCreator.createIndexFile();
         String e = "list";
-        InterpreteurGlobal com = new InterpreteurGlobal();
-        com.execute(e.split(" "));
+        InterpreteurGlobal.execute(e.split(" "));
         Listing lis = new Listing();
         String temp;
         temp = PropertiesRead.getPaths();

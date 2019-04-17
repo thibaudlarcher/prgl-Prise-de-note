@@ -1,4 +1,5 @@
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class TestView {
     @Test
@@ -7,7 +8,6 @@ public class TestView {
         PropertiesRead.readPropertiesFile();
         IndexCreator.createIndexFile();
         String e = "view NewFile";
-        InterpreteurGlobal com = new InterpreteurGlobal();
-        com.execute(e.split(" "));
+        InterpreteurGlobal.execute(e.split(" "));
     }
 }

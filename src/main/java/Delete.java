@@ -16,7 +16,7 @@ public class Delete implements Command {
      * Permet de récupérer le chemin physique du dossier note
      * @return le chemin du dossier note
      */
-    public static String getPath() {
+    public String getPath() {
         return path;
     }
 

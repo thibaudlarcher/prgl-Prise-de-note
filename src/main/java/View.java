@@ -11,6 +11,7 @@ public class View implements Command {
         }
     }
 
+    @SuppressWarnings("ResultOfMethodCallIgnored")
     @Override
     public void command(String str) {
         if (str.length() >= 5 && str.substring(str.length() - 5).equals(".adoc")) {

@@ -33,5 +33,9 @@ public class Listing implements Command {
         System.out.println(output);
         System.out.println("\033[0m");
     }
+
+    public String getPaths() {
+        return paths;
+    }
 }
 
