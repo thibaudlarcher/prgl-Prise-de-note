@@ -8,6 +8,9 @@ import java.io.File;
 
 import static java.lang.System.exit;
 
+/**
+ * Class qui permet de naviger dans ces documents pour choisir l'endroit où sauvegarder ses notes
+ */
 public class pathsChooser extends JPanel implements ActionListener,Command {
 
     private String paths;
@@ -22,6 +25,9 @@ public class pathsChooser extends JPanel implements ActionListener,Command {
         return new Dimension(200, 200);
     }
 
+    /**
+     * Permet d'ouvrire le navigateur de fichier
+     */
     public void closeWindow(){
         JFrame J = new JFrame();
         J.setSize(300,200);

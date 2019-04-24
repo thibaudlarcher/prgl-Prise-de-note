@@ -59,6 +59,10 @@ public class InterpreteurGlobal {
             case "view":
                 C = new View();
                 break;
+            case "s":
+            case "search":
+                C = new Search();
+                break;
             default:
                 C = new NonCommand();
                 command = args[0] + " " + command;

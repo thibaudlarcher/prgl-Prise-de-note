@@ -5,10 +5,16 @@ import java.awt.event.KeyListener;
 
 import static java.lang.System.exit;
 
+/**
+ * Class permettant d'ouvrire l'application dans une autre fenêtre
+ */
 public class InterpreteurFenetre implements Command{
 
     private JFrame interpreteur;
 
+    /**
+     * Constructeur de la Fenêtre
+     */
     public InterpreteurFenetre() {
         this.interpreteur = new JFrame("Interpréteur Notes");
         this.interpreteur.setSize(700,400);
@@ -19,6 +25,14 @@ public class InterpreteurFenetre implements Command{
         this.interpreteur.setBackground(Color.black);
     }
 
+    /**
+     * Pour écrire une ligne dans la nouvelle fenêtre
+     * @param s Les caractères
+     * @param C La couleur
+     * @param x La position en x
+     * @param y La position en y
+     * @return le type Jtextpane
+     */
     private JTextPane jtxtpane(String s,Color C,int x,int y){
         JTextPane textPane = new JTextPane();
         textPane.setEditable(false);
@@ -31,6 +45,10 @@ public class InterpreteurFenetre implements Command{
         return textPane;
     }
 
+    /**
+     * Permet de former tout la nouvelle fenêtre
+     * @return Un Jpanel
+     */
     private JPanel setHelpText(){
         JPanel helpTxtPanel = new JPanel();
         helpTxtPanel.setLocation(0,0);
@@ -55,6 +73,10 @@ public class InterpreteurFenetre implements Command{
         return helpTxtPanel ;
     }
 
+    /**
+     * Permet de prendre en entré les lignes de commande passé par l'Utilisateur
+     * @param listenerPanel
+     */
     private void setListener(JPanel listenerPanel){
         JTextPane textPane = new JTextPane();
         textPane.setEditable(false);
@@ -100,6 +122,9 @@ public class InterpreteurFenetre implements Command{
 
     }
 
+    /**
+     * Affiche la fenêtre Jpanel
+     */
     private void Afficher(){
         JPanel J = this.setHelpText();
         this.setListener(J);
