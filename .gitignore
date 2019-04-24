@@ -1,4 +1,5 @@
 prgl-Prise-de-note.iml
+*.iml
 .idea/
 target/
 *.properties

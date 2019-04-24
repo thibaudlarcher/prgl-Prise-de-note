@@ -47,6 +47,7 @@ public class Edition implements Command{
                 e.printStackTrace();
             }
         }
+        index.updateIndex();
     }
 
     /**

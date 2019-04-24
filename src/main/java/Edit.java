@@ -10,9 +10,8 @@ public class Edit {
         PropertiesRead.readPropertiesFile();
         IndexCreator.createIndexFile();
         if(args.length == 0){
-//            new InterpreteurFenetre().command("");
-            new InterpreteurConsole().command("");
-
+//            InterpreteurFenetre.getInstance().command("");
+            InterpreteurConsole.getInstance().command("");
         }else{
             InterpreteurGlobal.execute(args);
         }

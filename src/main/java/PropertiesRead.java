@@ -1,5 +1,5 @@
 import java.io.*;
-import java.util.ArrayList;
+import java.nio.charset.StandardCharsets;
 
 public class PropertiesRead {
 
@@ -15,7 +15,7 @@ public class PropertiesRead {
         if ((f.exists())) {
             BufferedReader br;
             try{
-                br = new BufferedReader(new InputStreamReader(new FileInputStream("notes.properties"),"UTF-8"));
+                br = new BufferedReader(new InputStreamReader(new FileInputStream("notes.properties"), StandardCharsets.UTF_8));
                 for(int i = 0;i<2;i++){
                     if(i == 0)
                         application = br.readLine();

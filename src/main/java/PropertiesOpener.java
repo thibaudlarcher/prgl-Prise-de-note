@@ -1,7 +1,7 @@
 import java.io.*;
 
 public class PropertiesOpener implements Command {
-    String programme;
+    private static String programme;
     public PropertiesOpener() {
     }
 

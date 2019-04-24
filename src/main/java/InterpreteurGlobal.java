@@ -5,7 +5,7 @@ import static java.lang.System.exit;
  */
 public class InterpreteurGlobal {
     public static Command C;
-    protected InterpreteurGlobal() { }
+    private InterpreteurGlobal() { }
 
     /**
      * Permet d'éxécuter les fonctions suivant la ligne de commande solicité
@@ -24,6 +24,7 @@ public class InterpreteurGlobal {
         String command = sb.toString();
 
         switch (args[0]) {
+            case "ex":
             case "exit":
                 exit(0);
             case "e":
@@ -40,11 +41,11 @@ public class InterpreteurGlobal {
                 break;
             case "f":
             case "fenetre":
-                C = new InterpreteurFenetre();
+                C = InterpreteurFenetre.getInstance();
                 break;
             case "c":
             case "console":
-                C = new InterpreteurConsole();
+                C = InterpreteurConsole.getInstance();
                 break;
             case "pr":
             case "property":
@@ -53,7 +54,7 @@ public class InterpreteurGlobal {
                 break;
             case "p":
             case "path":
-                C = new pathsChooser();
+                C = new PathsChooser();
                 break;
             case "v":
             case "view":
