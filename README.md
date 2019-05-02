@@ -5,7 +5,7 @@ Petite application qui permet de gérer des notes. Nous pouvons créer des notes
 2.Créateur <br><br>
 [LARCHER Thibaud](https://github.com/thibaudlarcher)<br>
 [DUFOURD Arnaud](https://github.com/Whilmaud)<br>
-[CARBONIER Nicolas](https://github.com/CarbonnierNicolas)<br>
+[CARBONNIER Nicolas](https://github.com/CarbonnierNicolas)<br>
 [SOTTAS Jean-Charles](https://github.com/dragonpatin)<br><br>
 3.Installation<br><br>
 Pour pouvoir exécuter le projet veuillez installer maven pour la compilation.
