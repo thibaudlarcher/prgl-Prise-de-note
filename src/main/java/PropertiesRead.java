@@ -1,15 +1,28 @@
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Classe pour la lecture du fichier des propriétés.
+ */
 public class PropertiesRead {
 
+    /**
+     * Le chemin du dossier où sont enregistrer les notes.
+     */
     private static String paths;
+
+    /**
+     * Le chemin où ce trouve l'application pour éditer les notes.
+     */
     private static String application;
 
     private PropertiesRead() {
         readPropertiesFile();
     }
 
+    /**
+     * Méthode pour la lecture du fichier des propriétés.
+     */
     public static void readPropertiesFile() {
         File f = new File("notes.properties");
         if ((f.exists())) {

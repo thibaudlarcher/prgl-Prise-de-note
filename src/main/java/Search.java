@@ -7,7 +7,7 @@ public class Search implements Command {
     private static String paths;
 
     /**
-     * builder du listing
+     * builder de la classe
      */
     public Search(){
         if(paths == null){
