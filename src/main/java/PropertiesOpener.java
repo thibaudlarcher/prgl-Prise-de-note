@@ -1,5 +1,8 @@
 import java.io.*;
 
+/**
+ * Classe pour l'ouverture du fichier des propriétés.
+ */
 public class PropertiesOpener implements Command {
     private static String programme;
     public PropertiesOpener() {

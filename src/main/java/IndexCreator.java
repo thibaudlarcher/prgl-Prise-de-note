@@ -2,13 +2,22 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 
+/**
+ * Classe pour créer l'index.
+ */
 public class IndexCreator {
     private ArrayList<Note> ListNote;
 
+    /**
+     * Constructeur de la classe.
+     */
     public IndexCreator() {
         ListNote = new ArrayList<>();
     }
 
+    /**
+     * Méthode pour créer l'index si le fichier n'existe pas.
+     */
     public static void createIndexFile() {
         File f = new File(PropertiesRead.getPaths() + "index.adoc");
 
@@ -36,6 +45,9 @@ public class IndexCreator {
         }
     }
 
+    /**
+     * Méthode pour lire le fichier de l'index et récuperer son contenu (les notes) que l'on met dans une liste.
+     */
     public void readIndex() {
         this.ListNote = new ArrayList<>();
         File f = new File(PropertiesRead.getPaths() + "index.adoc");
@@ -71,6 +83,10 @@ public class IndexCreator {
         }
     }
 
+    /**
+     * Méthode pour ajouter une note dans l'index.
+     * @param note la nouvelle note à ajouter.
+     */
     public void addNote(Note note) {
         File f = new File(PropertiesRead.getPaths() + "index.adoc");
 
@@ -81,6 +97,10 @@ public class IndexCreator {
         }
     }
 
+    /**
+     * Méthode pour supprimer une note de l'index.
+     * @param note la note à supprimer.
+     */
     public void deleteNote(Note note) {
         File f = new File(PropertiesRead.getPaths() + "index.adoc");
         if (f.exists()) {
@@ -93,6 +113,11 @@ public class IndexCreator {
         writeIndex();
     }
 
+    /**
+     * Méthode pour récuperer le contexte d'une note de l'index.
+     * @param titre le nom de la note.
+     * @return le contexte de la note.
+     */
     public String findContext(String titre) {
         File f = new File(PropertiesRead.getPaths() + titre + ".adoc");
         String context = "context";
@@ -115,6 +140,11 @@ public class IndexCreator {
         return context;
     }
 
+    /**
+     * Méthode pour récuperer le projet d'une note de l'index.
+     * @param titre le nom de la note.
+     * @return le projet de la note.
+     */
     public String findProject(String titre) {
         File f = new File(PropertiesRead.getPaths() + titre + ".adoc");
         String project = "project";
@@ -137,6 +167,11 @@ public class IndexCreator {
         return project;
     }
 
+    /**
+     * Méthode pour recupere la date de creation d'une note de l'index.
+     * @param titre le nom de la note.
+     * @return la date de création de la note.
+     */
     public int findDate(String titre) {
         File f = new File(PropertiesRead.getPaths() + titre + ".adoc");
         int date = 1;
@@ -162,6 +197,9 @@ public class IndexCreator {
         return date;
     }
 
+    /**
+     * Méthode pour mettre à jour le tri des notes de l'index.
+     */
     public void updateIndex() {
         File f = new File(PropertiesRead.getPaths() + "index.adoc");
         if (f.exists()) {
@@ -170,6 +208,9 @@ public class IndexCreator {
         }
     }
 
+    /**
+     * Méthode pour écrire les notes dans l'index de manière triée.
+     */
     private void writeIndex() {
         File f = new File(PropertiesRead.getPaths() + "index.adoc");
 
