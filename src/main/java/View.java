@@ -2,9 +2,15 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Classe pour la visualisation d'une note.
+ */
 public class View implements Command {
     private static String paths;
 
+    /**
+     * Constructeur de la classe.
+     */
     public View(){
         if(paths == null) {
             paths =  PropertiesRead.getPaths();

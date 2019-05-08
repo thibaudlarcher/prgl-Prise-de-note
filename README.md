@@ -4,7 +4,7 @@
 Petite application qui permet de gérer des notes. Nous pouvons créer des notes, les modifier, les rechercher par mots clé, les afficher selon des tris ou les supprimer.<br><br>
 2.Créateur <br><br>
 [LARCHER Thibaud](https://github.com/thibaudlarcher)<br>
-[DUFOURD Arnaud](https://github.com/Whilmaud)<br>
+[DUFOUR Arnaud](https://github.com/Whilmaud)<br>
 [CARBONNIER Nicolas](https://github.com/CarbonnierNicolas)<br>
 [SOTTAS Jean-Charles](https://github.com/dragonpatin)<br><br>
 3.Installation<br><br>

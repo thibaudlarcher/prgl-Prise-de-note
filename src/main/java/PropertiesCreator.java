@@ -1,10 +1,16 @@
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 
+/**
+ * Classe pour la création du fichier de propriété.
+ */
 public class PropertiesCreator {
     private PropertiesCreator() {
     }
 
+    /**
+     * Méthode pour créer le dossier où les notes seront enregistrer.
+     */
     @SuppressWarnings("ResultOfMethodCallIgnored")
     private static void createDir(){
         File f = new File("notes.properties");
@@ -24,6 +30,9 @@ public class PropertiesCreator {
         }
     }
 
+    /**
+     * Méthode pour créer le fichier des propriétés.
+     */
     public static void createPropertiesFile(){
         File f = new File("notes.properties");
         if(!(f.exists())) {
@@ -55,6 +64,11 @@ public class PropertiesCreator {
         }
         createDir();
     }
+
+    /**
+     * Méthode pour mettre à jour le fichier des propriétés.
+     * @param paths le chemin où ce trouve le fichier.
+     */
     public static void updatePropertiesFile(String paths) {
         File f = new File("notes.properties");
         if ((f.exists())) {
