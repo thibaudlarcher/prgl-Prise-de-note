@@ -1,4 +1,5 @@
 import java.io.*;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -48,13 +49,13 @@ public class IndexCreator {
     /**
      * Méthode pour lire le fichier de l'index et récuperer son contenu (les notes) que l'on met dans une liste.
      */
-    public void readIndex() {
+    private void readIndex() {
         this.ListNote = new ArrayList<>();
         File f = new File(PropertiesRead.getPaths() + "index.adoc");
         if (f.exists()) {
             BufferedReader br;
             try {
-                br = new BufferedReader(new InputStreamReader(new FileInputStream(PropertiesRead.getPaths() + "index.adoc"),"UTF-8"));
+                br = new BufferedReader(new InputStreamReader(new FileInputStream(PropertiesRead.getPaths() + "index.adoc"), StandardCharsets.UTF_8));
                 String line = br.readLine();
                 while (line != null) {
                     boolean exist = false;
@@ -63,8 +64,8 @@ public class IndexCreator {
                         if (ListNote.isEmpty()) {
                             ListNote.add(new Note.NoteBuilder(titre).setContext(findContext(titre)).setProject(findProject(titre)).setDate(findDate(titre)).build());
                         } else {
-                            for (int i = 0; i < ListNote.size(); i++) {
-                                if (ListNote.get(i).getTitre().equalsIgnoreCase(titre)) {
+                            for (Note note : ListNote) {
+                                if (note.getTitre().equalsIgnoreCase(titre)) {
                                     exist = true;
                                 }
                             }
@@ -118,13 +119,13 @@ public class IndexCreator {
      * @param titre le nom de la note.
      * @return le contexte de la note.
      */
-    public String findContext(String titre) {
+    private String findContext(String titre) {
         File f = new File(PropertiesRead.getPaths() + titre + ".adoc");
         String context = "context";
         if (f.exists()) {
             BufferedReader br;
             try {
-                br = new BufferedReader(new InputStreamReader(new FileInputStream(f),"UTF-8"));
+                br = new BufferedReader(new InputStreamReader(new FileInputStream(f), StandardCharsets.UTF_8));
                 String line = br.readLine();
                 while (line != null) {
                     if (line.startsWith(":context:") && line.length() > 9) {
@@ -145,13 +146,13 @@ public class IndexCreator {
      * @param titre le nom de la note.
      * @return le projet de la note.
      */
-    public String findProject(String titre) {
+    private String findProject(String titre) {
         File f = new File(PropertiesRead.getPaths() + titre + ".adoc");
         String project = "project";
         if (f.exists()) {
             BufferedReader br;
             try {
-                br = new BufferedReader(new InputStreamReader(new FileInputStream(f),"UTF-8"));
+                br = new BufferedReader(new InputStreamReader(new FileInputStream(f), StandardCharsets.UTF_8));
                 String line = br.readLine();
                 while (line != null) {
                     if (line.startsWith(":project:") && line.length() > 9) {
@@ -172,7 +173,7 @@ public class IndexCreator {
      * @param titre le nom de la note.
      * @return la date de création de la note.
      */
-    public int findDate(String titre) {
+    private int findDate(String titre) {
         File f = new File(PropertiesRead.getPaths() + titre + ".adoc");
         int date = 1;
         if (f.exists()) {
@@ -180,7 +181,7 @@ public class IndexCreator {
             String line = null;
             String[] month;
             try {
-                br = new BufferedReader(new InputStreamReader(new FileInputStream(f),"UTF-8"));
+                br = new BufferedReader(new InputStreamReader(new FileInputStream(f), StandardCharsets.UTF_8));
                 for (int i = 0; i < 3; i++) {
                     if (i == 2) {
                         line = br.readLine();
@@ -222,7 +223,7 @@ public class IndexCreator {
                 fw.write("==== Tri des notes par ordre alphabétique :\n");
                 fw.write("[square]");
                 fw.write("\n");
-                Collections.sort(ListNote, Note.TitreComparator);
+                ListNote.sort(Note.TitreComparator);
                 for (Note note : ListNote) {
                     fw.write("* " + note.getTitre());
                     fw.write("\n");
@@ -231,7 +232,7 @@ public class IndexCreator {
                 fw.write("==== Tri des notes par contexte :\n");
                 fw.write("[square]");
                 fw.write("\n");
-                Collections.sort(ListNote, Note.ContextComparator);
+                ListNote.sort(Note.ContextComparator);
                 for (Note note : ListNote) {
                     fw.write("* " + note.getTitre());
                     fw.write("\n");
@@ -240,7 +241,7 @@ public class IndexCreator {
                 fw.write("==== Tri des notes par projet :\n");
                 fw.write("[square]");
                 fw.write("\n");
-                Collections.sort(ListNote, Note.ProjectComparator);
+                ListNote.sort(Note.ProjectComparator);
                 for (Note note : ListNote) {
                     fw.write("* " + note.getTitre());
                     fw.write("\n");
@@ -249,7 +250,7 @@ public class IndexCreator {
                 fw.write("==== Tri des notes par mois de création :\n");
                 fw.write("[square]");
                 fw.write("\n");
-                Collections.sort(ListNote, Note.DateComparator);
+                ListNote.sort(Note.DateComparator);
                 for (Note note : ListNote) {
                     fw.write("* " + note.getTitre());
                     fw.write("\n");

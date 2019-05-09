@@ -1,5 +1,4 @@
 import java.io.File;
-import java.io.IOException;
 
 public class Delete implements Command {
     private static String path;
