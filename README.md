@@ -43,7 +43,7 @@ Pour la liste des commandes, veuillez vous référer au manuel d'utilisation.
 6.Explication Conception <br><br>
     L'application respecte le modèle OCP. <br>
     Nous avons une interface commande, toutes les notes héritent de cette interface. Les classes vont alors modifier la méthode pour qu'elles puisent implémenter leurs spécificités.<br>
-    Pour l'interpreteurFenetre ainsi que l'InterpreteurConsole, utilisent un Singleton. C'est-à-dire qu'importe le nombre de fois où l'on ouvre l'application, il n'y aura qu'une seule fenêtre d'ouverte.<br>
+    Pour l'interpreteurFenetre ainsi que l'InterpreteurConsole, utilisent un Singleton. C'est-à-dire qu'importe le nombre de fois où l'on ouvre l'application, il n'y aura qu'une seule fenêtre d'ouverte.<br><br>
 7.Partie Fonctionnelle <br><br>
     Le changement de dossier de sauvegarde.<br>
     La recherche de note.<br>
