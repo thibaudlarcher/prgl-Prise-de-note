@@ -25,3 +25,24 @@ java -jar prisedenote-1.0.jar commande
 <br>
 4.Manuel d'utilisation <br><br>
     Référence fichier 'Manuel_Utilisation.pdf' dans l'archive.
+    <br><br>
+5.Exemple Scénario <br><br>
+    L'utilisateur Change le dossier de sauvegarde. ("Sauvegarde sur le Bureau").<br>
+    L'utilisateur créé une note appelé "UneNouvelleNote". On ferme l'editeur sans rien avoire écrit.<br>
+    L'utilisateur réouvre la note pour écire ("Un logiciel de prise de note").<br>
+    L'utilisateur créé une nouvelle note sans nom.<br>
+    L'utilisateur affiche les notes avec LS.<br>
+    L'utilisateur affiche les notes dans View.<br>
+    L'utilisateur supprime la nouvelle note créé.<br>
+    L'utilisateur affiche les notes avec LS.<br>
+    L'utilisateur fait une recherche avec le mot clé "note".<br><br>
+6.Explication Conception <br><br>
+    L'application respecte le modéle OCP. <br>
+    Nous avons une interface commande, toutes les note hérite de cette interface. Les classe vont alors modifier la méthode pour qu'elle puise implémenter leurs spécificité.<br><br>
+7.Partie Fonctionnelle <br><br>
+    Le changement de dossier de sauvegarde.<br>
+    La recherche de note.<br>
+    La création/suppresion/modification de note.<br>
+    L'affichage de note dans le terminal et avec un navigateur<br><br>
+8.Partie non Fonctionnelle <br><br>
+    Le Changement de logiciel pour l'ouverture des notes
