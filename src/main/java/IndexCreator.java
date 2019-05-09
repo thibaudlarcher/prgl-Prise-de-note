@@ -224,35 +224,74 @@ public class IndexCreator {
                 fw.write("[square]");
                 fw.write("\n");
                 ListNote.sort(Note.TitreComparator);
-                for (Note note : ListNote) {
-                    fw.write("* " + note.getTitre());
+                for (int i = 0; i < ListNote.size(); i++) {
+                    fw.write("* " + ListNote.get(i).getTitre());
                     fw.write("\n");
                 }
                 fw.write("\n");
                 fw.write("==== Tri des notes par contexte :\n");
-                fw.write("[square]");
-                fw.write("\n");
+
                 ListNote.sort(Note.ContextComparator);
-                for (Note note : ListNote) {
-                    fw.write("* " + note.getTitre());
+                for (int i = 0; i < ListNote.size(); i++) {
+                    if (i > 0) {
+                        if (!(ListNote.get(i).getContext().equals(ListNote.get(i - 1).getContext()))) {
+                            fw.write("\n");
+                            fw.write("===== " + ListNote.get(i).getContext());
+                            fw.write("\n");
+                            fw.write("[square]");
+                            fw.write("\n");
+                        }
+                    } else {
+                        fw.write("===== " + ListNote.get(i).getContext());
+                        fw.write("\n");
+                        fw.write("[square]");
+                        fw.write("\n");
+                    }
+                    fw.write("* " + ListNote.get(i).getTitre());
                     fw.write("\n");
                 }
                 fw.write("\n");
                 fw.write("==== Tri des notes par projet :\n");
-                fw.write("[square]");
-                fw.write("\n");
+
                 ListNote.sort(Note.ProjectComparator);
-                for (Note note : ListNote) {
-                    fw.write("* " + note.getTitre());
+                for (int i = 0; i < ListNote.size(); i++) {
+                    if (i > 0) {
+                        if (!(ListNote.get(i).getProject().equals(ListNote.get(i - 1).getProject()))){
+                            fw.write("\n");
+                            fw.write("===== " + ListNote.get(i).getProject());
+                            fw.write("\n");
+                            fw.write("[square]");
+                            fw.write("\n");
+                        }
+                    } else {
+                        fw.write("===== " + ListNote.get(i).getProject());
+                        fw.write("\n");
+                        fw.write("[square]");
+                        fw.write("\n");
+                    }
+                    fw.write("* " + ListNote.get(i).getTitre());
                     fw.write("\n");
                 }
                 fw.write("\n");
                 fw.write("==== Tri des notes par mois de création :\n");
-                fw.write("[square]");
-                fw.write("\n");
+
                 ListNote.sort(Note.DateComparator);
-                for (Note note : ListNote) {
-                    fw.write("* " + note.getTitre());
+                for (int i = 0; i < ListNote.size(); i++) {
+                    if (i > 0){
+                        if (ListNote.get(i).getDate() != ListNote.get(i - 1).getDate()) {
+                            fw.write("\n");
+                            fw.write("===== " + ListNote.get(i).getDate());
+                            fw.write("\n");
+                            fw.write("[square]");
+                            fw.write("\n");
+                        }
+                    } else {
+                        fw.write("===== " + ListNote.get(i).getDate());
+                        fw.write("\n");
+                        fw.write("[square]");
+                        fw.write("\n");
+                    }
+                    fw.write("* " + ListNote.get(i).getTitre());
                     fw.write("\n");
                 }
                 fw.close();

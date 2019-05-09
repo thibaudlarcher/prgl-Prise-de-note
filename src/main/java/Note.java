@@ -89,7 +89,7 @@ public class Note {
         return this.project;
     }
 
-    private int getDate() {
+    public int getDate() {
         return this.date;
     }
 
