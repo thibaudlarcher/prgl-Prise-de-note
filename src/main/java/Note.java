@@ -8,16 +8,18 @@ public class Note {
     private String titre;
     private String context;
     private String project;
-    private int date;
+    private int dateMonth;
+    private int dateYear;
 
     /**
      * Pattern Builder de la noteBuilder.
      */
     public static class NoteBuilder {
         private String titre;
-        private String context = "context";
-        private String project = "project";
-        private int date = LocalDate.now().getMonthValue();
+        private String context = "none";
+        private String project = "none";
+        private int dateMonth = LocalDate.now().getMonthValue();
+        private int dateYear = LocalDate.now().getYear();
 
         /**
          * Constructeur du NoteBuilder.
@@ -48,12 +50,22 @@ public class Note {
         }
 
         /**
-         * Permet de définir la date de création de la note.
-         * @param date la date de création.
+         * Permet de définir la dateMonth de création de la note.
+         * @param dateMonth la dateMonth de création.
          * @return le builder.
          */
-        public NoteBuilder setDate(int date) {
-            this.date = date;
+        public NoteBuilder setDateMonth(int dateMonth) {
+            this.dateMonth = dateMonth;
+            return this;
+        }
+
+        /**
+         * Permet de définir la dateMonth de création de la note.
+         * @param dateYear la dateMonth de création.
+         * @return le builder.
+         */
+        public NoteBuilder setDateYear(int dateYear) {
+            this.dateYear = dateYear;
             return this;
         }
 
@@ -74,7 +86,8 @@ public class Note {
         this.titre = builder.titre;
         this.context = builder.context;
         this.project = builder.project;
-        this.date = builder.date;
+        this.dateMonth = builder.dateMonth;
+        this.dateYear = builder.dateYear;
     }
 
     public String getTitre() {
@@ -89,8 +102,12 @@ public class Note {
         return this.project;
     }
 
-    public int getDate() {
-        return this.date;
+    public int getDateMonth() {
+        return this.dateMonth;
+    }
+
+    public int getDateYear() {
+        return this.dateYear;
     }
 
     /**
@@ -125,12 +142,16 @@ public class Note {
     };
 
     /**
-     * Méthode pour comparer deux notes selon leur date de création.
+     * Méthode pour comparer deux notes selon leur dateMonth de création.
      */
     public static Comparator<Note> DateComparator = new Comparator<Note>() {
         @Override
         public int compare(Note o1, Note o2) {
-            return o1.getDate() - o2.getDate();
+            if (o1.getDateYear() == o2.getDateYear()){
+                return o1.getDateMonth() - o2.getDateMonth();
+            } else {
+                return o1.getDateYear() - o2.getDateYear();
+            }
         }
     };
 }

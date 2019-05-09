@@ -1,7 +1,6 @@
 import java.io.*;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * Classe pour créer l'index.
@@ -62,7 +61,7 @@ public class IndexCreator {
                     if (line.startsWith("*")) {
                         String titre = line.substring(2);
                         if (ListNote.isEmpty()) {
-                            ListNote.add(new Note.NoteBuilder(titre).setContext(findContext(titre)).setProject(findProject(titre)).setDate(findDate(titre)).build());
+                            ListNote.add(new Note.NoteBuilder(titre).setContext(findContext(titre)).setProject(findProject(titre)).setDateMonth(findDateMonth(titre)).setDateYear(findDateYear(titre)).build());
                         } else {
                             for (Note note : ListNote) {
                                 if (note.getTitre().equalsIgnoreCase(titre)) {
@@ -70,7 +69,7 @@ public class IndexCreator {
                                 }
                             }
                             if (!exist) {
-                                ListNote.add(new Note.NoteBuilder(titre).setContext(findContext(titre)).setProject(findProject(titre)).setDate(findDate(titre)).build());
+                                ListNote.add(new Note.NoteBuilder(titre).setContext(findContext(titre)).setProject(findProject(titre)).setDateMonth(findDateMonth(titre)).setDateYear(findDateYear(titre)).build());
                             }
                         }
                     }
@@ -121,7 +120,7 @@ public class IndexCreator {
      */
     private String findContext(String titre) {
         File f = new File(PropertiesRead.getPaths() + titre + ".adoc");
-        String context = "context";
+        String context = "none";
         if (f.exists()) {
             BufferedReader br;
             try {
@@ -148,7 +147,7 @@ public class IndexCreator {
      */
     private String findProject(String titre) {
         File f = new File(PropertiesRead.getPaths() + titre + ".adoc");
-        String project = "project";
+        String project = "none";
         if (f.exists()) {
             BufferedReader br;
             try {
@@ -169,11 +168,11 @@ public class IndexCreator {
     }
 
     /**
-     * Méthode pour recupere la date de creation d'une note de l'index.
+     * Méthode pour recuperer le mois de la date de creation d'une note de l'index.
      * @param titre le nom de la note.
      * @return la date de création de la note.
      */
-    private int findDate(String titre) {
+    private int findDateMonth(String titre) {
         File f = new File(PropertiesRead.getPaths() + titre + ".adoc");
         int date = 1;
         if (f.exists()) {
@@ -199,6 +198,36 @@ public class IndexCreator {
     }
 
     /**
+     * Méthode pour recuperer l'année de la date de creation d'une note de l'index.
+     * @param titre le nom de la note.
+     * @return la date de création de la note.
+     */
+    private int findDateYear(String titre) {
+        File f = new File(PropertiesRead.getPaths() + titre + ".adoc");
+        int date = 1;
+        if (f.exists()) {
+            BufferedReader br;
+            String line = null;
+            String[] month;
+            try {
+                br = new BufferedReader(new InputStreamReader(new FileInputStream(f), StandardCharsets.UTF_8));
+                for (int i = 0; i < 3; i++) {
+                    if (i == 2) {
+                        line = br.readLine();
+                    }
+                    br.readLine();
+                }
+                month = line.split("/");
+                date = Integer.parseInt(month[2]);
+                br.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        return date;
+    }
+
+    /**
      * Méthode pour mettre à jour le tri des notes de l'index.
      */
     public void updateIndex() {
@@ -207,6 +236,56 @@ public class IndexCreator {
             readIndex();
             writeIndex();
         }
+    }
+
+    /**
+     * Méthode pour convertir un mois int en String
+     * @param mois le mois en int
+     * @return le mois en String
+     */
+    private String Month(int mois) {
+        String month = null;
+        switch (mois) {
+            case 1 :
+                month = "Janvier";
+                break;
+            case 2 :
+                month = "Fevrier";
+                break;
+            case 3 :
+                month = "Mars";
+                break;
+            case 4 :
+                month = "Avril";
+                break;
+            case 5 :
+                month = "Mai";
+                break;
+            case 6 :
+                month = "Juin";
+                break;
+            case 7 :
+                month = "Juillet";
+                break;
+            case 8 :
+                month = "Aout";
+                break;
+            case 9 :
+                month = "Septembre";
+                break;
+            case 10 :
+                month = "Octobre";
+                break;
+            case 11 :
+                month = "Novembre";
+                break;
+            case 12 :
+                month = "Decembre";
+                break;
+            default:
+                break;
+        }
+        return month;
     }
 
     /**
@@ -278,15 +357,15 @@ public class IndexCreator {
                 ListNote.sort(Note.DateComparator);
                 for (int i = 0; i < ListNote.size(); i++) {
                     if (i > 0){
-                        if (ListNote.get(i).getDate() != ListNote.get(i - 1).getDate()) {
+                        if (ListNote.get(i).getDateMonth() != ListNote.get(i - 1).getDateMonth() || ListNote.get(i).getDateYear() != ListNote.get(i - 1).getDateYear()) {
                             fw.write("\n");
-                            fw.write("===== " + ListNote.get(i).getDate());
+                            fw.write("===== " + Month(ListNote.get(i).getDateMonth()) + " " + ListNote.get(i).getDateYear());
                             fw.write("\n");
                             fw.write("[square]");
                             fw.write("\n");
                         }
                     } else {
-                        fw.write("===== " + ListNote.get(i).getDate());
+                        fw.write("===== " + Month(ListNote.get(i).getDateMonth()) + " " + ListNote.get(i).getDateYear());
                         fw.write("\n");
                         fw.write("[square]");
                         fw.write("\n");
