@@ -31,7 +31,9 @@ public class Search implements Command {
         String[] regexs = str.split(" ");
         StringBuilder output = new StringBuilder();
 
-        System.out.println("\033[0;34m");
+        if(!OSRecognizer.isWindows()){
+            System.out.println("\033[0;34m");
+        }
         output.append("Résultat Recherche mot clef : ");
         output.append(str);
         output.append(" :\n");
@@ -64,7 +66,9 @@ public class Search implements Command {
             }
         }
         System.out.println(output);
-        System.out.println("\033[0m");
+        if(!OSRecognizer.isWindows()){
+            System.out.println("\033[0m");
+        }
     }
 
     /**
@@ -75,7 +79,9 @@ public class Search implements Command {
         String[] regexs = str.split(" ");
         StringBuilder output = new StringBuilder();
 
-        System.out.println("\033[0;34m");
+        if(!OSRecognizer.isWindows()){
+            System.out.println("\033[0;34m");
+        }
         output.append("Résultat Recherche Titre : ");
         output.append(str);
         output.append(" :\n");
@@ -100,7 +106,9 @@ public class Search implements Command {
             }
         }
         System.out.println(output);
-        System.out.println("\033[0m");
+        if(!OSRecognizer.isWindows()){
+            System.out.println("\033[0m");
+        }
     }
 
     /**
@@ -111,7 +119,9 @@ public class Search implements Command {
         String[] regexs = str.split(" ");
         StringBuilder output = new StringBuilder();
 
-        System.out.println("\033[0;34m");
+        if(!OSRecognizer.isWindows()){
+            System.out.println("\033[0;34m");
+        }
         output.append("Résultat Recherche Context : ");
         output.append(str);
         output.append(" :\n");
@@ -139,7 +149,9 @@ public class Search implements Command {
             }
         }
         System.out.println(output);
-        System.out.println("\033[0m");
+        if(!OSRecognizer.isWindows()){
+            System.out.println("\033[0m");
+        }
     }
 
     /**
@@ -150,7 +162,9 @@ public class Search implements Command {
         String[] regexs = str.split(" ");
         StringBuilder output = new StringBuilder();
 
-        System.out.println("\033[0;34m");
+        if(!OSRecognizer.isWindows()){
+            System.out.println("\033[0;34m");
+        }
         output.append("Résultat Recherche Projet : ");
         output.append(str);
         output.append(" :\n");
@@ -179,7 +193,9 @@ public class Search implements Command {
             }
         }
         System.out.println(output);
-        System.out.println("\033[0m");
+        if(!OSRecognizer.isWindows()){
+            System.out.println("\033[0m");
+        }
     }
 
     /**
