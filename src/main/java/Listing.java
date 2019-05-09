@@ -20,8 +20,9 @@ public class Listing implements Command {
     @Override
     public void command(String str) {
         StringBuilder output = new StringBuilder();
-
-        System.out.println("\033[0;34m");
+        if(!OSRecognizer.isWindows()){
+            System.out.println("\033[0;34m");
+        }
         output.append("Liste des Notes");
         output.append(" :\n");
         File f = new File(paths);
@@ -31,7 +32,9 @@ public class Listing implements Command {
             output.append("\n");
         }
         System.out.println(output);
-        System.out.println("\033[0m");
+        if(!OSRecognizer.isWindows()){
+            System.out.println("\033[0m");
+        }
     }
 
     public String getPaths() {

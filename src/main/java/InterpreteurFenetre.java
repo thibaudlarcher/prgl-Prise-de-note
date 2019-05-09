@@ -38,7 +38,6 @@ public class InterpreteurFenetre implements Command{
      * Pour écrire une ligne dans la nouvelle fenêtre
      * @param s Les caractères
      * @param C La couleur
-     * @param x La position en x
      * @param y La position en y
      * @return le type Jtextpane
      */
@@ -85,7 +84,7 @@ public class InterpreteurFenetre implements Command{
 
     /**
      * Permet de prendre en entré les lignes de commande passé par l'Utilisateur
-     * @param listenerPanel
+     * @param listenerPanel Fenetre d'affichage.
      */
     private void setListener(JPanel listenerPanel){
         JTextPane textPane = new JTextPane();

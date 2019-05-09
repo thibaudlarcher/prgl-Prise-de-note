@@ -18,8 +18,13 @@ public class InterpreteurConsole implements Command{
         System.out.println("        | |_) | |  | \\__ \\  __/ | (_| |  __/ | | | | (_) | ||  __/");
         System.out.println("        | .__/|_|  |_|___/\\___|  \\__,_|\\___| |_| |_|\\___/ \\__\\___|");
         System.out.println("        |_|");
-        System.out.println("\033[1;31m" + "Bienvenue sur l'application de prise de note !");
-        System.out.println("\033[0;32m" + "Vous avez plusieurs possibilité de choix :");
+        if(OSRecognizer.isWindows()){
+            System.out.println("Bienvenue sur l'application de prise de note !");
+            System.out.println("Vous avez plusieurs possibilité de choix :");
+        } else {
+            System.out.println("\033[1;31m" + "Bienvenue sur l'application de prise de note !");
+            System.out.println("\033[0;32m" + "Vous avez plusieurs possibilité de choix :");
+        }
         System.out.println("0) Quiter (saisir exit ou ex)");
         System.out.println("1) Créer ou modifier une note (saisir edit ou e)");
         System.out.println("2) Lister les notes existantes (saisir list ou ls)");

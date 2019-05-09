@@ -4,7 +4,7 @@ import static java.lang.System.exit;
  * Permet d'interpréter les lignes de commandes
  */
 public class InterpreteurGlobal {
-    public static Command C;
+    private static Command C;
     private InterpreteurGlobal() { }
 
     /**
