@@ -41,7 +41,7 @@ Pour la liste des commandes, veuillez vous référer au manuel d'utilisation.
     L'utilisateur affiche les notes avec LS.<br>
     L'utilisateur fait une recherche avec le mot clé "note".<br><br>
 6.Explication Conception <br><br>
-    Patern builder
+    Patern builder.<br>
     L'application respecte le modèle OCP. <br>
     Nous avons une interface commande, toutes les notes héritent de cette interface. Les classes vont alors modifier la méthode pour qu'elles puisent implémenter leurs spécificités.<br>
     Pour l'interpreteurFenetre ainsi que l'InterpreteurConsole, utilisent un Singleton. C'est-à-dire qu'importe le nombre de fois où l'on ouvre l'application, il n'y aura qu'une seule fenêtre d'ouverte.<br><br>
